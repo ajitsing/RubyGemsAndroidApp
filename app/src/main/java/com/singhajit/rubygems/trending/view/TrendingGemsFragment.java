@@ -37,6 +37,16 @@ public class TrendingGemsFragment extends Fragment implements TrendingView {
   }
 
   @Override
+  public void showLoader() {
+    binding.progressBar.setVisibility(View.VISIBLE);
+  }
+
+  @Override
+  public void hideLoader() {
+    binding.progressBar.setVisibility(View.GONE);
+  }
+
+  @Override
   public void notify(String message) {
     ((INotifier) getActivity()).notify(message);
   }

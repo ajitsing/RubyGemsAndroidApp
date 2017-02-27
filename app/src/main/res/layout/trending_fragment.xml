@@ -15,10 +15,19 @@
     android:paddingRight="5dp"
     android:paddingTop="@dimen/activity_vertical_margin">
 
+    <ProgressBar
+      android:id="@+id/progress_bar"
+      style="?android:attr/progressBarStyleLarge"
+      android:layout_gravity="center"
+      android:layout_marginTop="150dp"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:visibility="gone"/>
+
     <android.support.v7.widget.RecyclerView
       android:id="@+id/gem_list"
       android:layout_width="match_parent"
-      android:layout_height="match_parent"
+      android:layout_height="wrap_content"
       android:scrollbars="vertical"/>
   </LinearLayout>
 </layout>

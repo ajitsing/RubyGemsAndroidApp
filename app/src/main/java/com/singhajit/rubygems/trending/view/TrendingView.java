@@ -5,4 +5,6 @@ import com.singhajit.rubygems.trending.viewmodel.TrendingViewModel;
 
 public interface TrendingView extends INotifier {
   void render(TrendingViewModel trendingViewModel);
+  void showLoader();
+  void hideLoader();
 }
