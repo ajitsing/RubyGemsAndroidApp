@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+
+  <data class="GemCardBinding">
+
+    <variable
+      name="viewModel"
+      type="com.singhajit.rubygems.trending.viewmodel.GemViewModel"/>
+  </data>
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+      android:id="@+id/card_view"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:layout_marginEnd="1dp"
+      android:layout_marginStart="1dp">
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:orientation="vertical"
+        android:paddingBottom="10dp">
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="10dp"
+          android:layout_marginTop="10dp"
+          android:orientation="horizontal">
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.name}"
+            android:textColor="@color/cardview_dark_background"
+            android:textStyle="bold"
+            tools:text="Gocd"/>
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@{viewModel.version}"
+            android:textColor="@color/light_black"
+            tools:text="1.5.0"/>
+
+          <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:text="@{viewModel.downloads}"
+            android:textColor="@color/cardview_dark_background"
+            android:textStyle="bold"
+            tools:text="20,000"/>
+        </LinearLayout>
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_weight="1"
+            android:text="@{viewModel.info}"
+            android:textColor="@color/cardview_dark_background"
+            tools:text="It is not a gocd plugin, it uses Gocd's API to relay information"/>
+
+          <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="end"
+            android:text="@string/downloads"
+            android:textColor="@color/cardview_dark_background"/>
+        </LinearLayout>
+      </LinearLayout>
+    </android.support.v7.widget.CardView>
+  </LinearLayout>
+</layout>

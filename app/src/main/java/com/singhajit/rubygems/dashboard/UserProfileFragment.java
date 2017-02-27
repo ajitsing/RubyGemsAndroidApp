@@ -1,4 +1,4 @@
-package com.singhajit.rubygems.trending;
+package com.singhajit.rubygems.dashboard;
 
 
 import android.support.v4.app.Fragment;
