@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import com.singhajit.rubygems.R;
 import com.singhajit.rubygems.core.INotifier;
 import com.singhajit.rubygems.core.NetworkActivity;
+import com.singhajit.rubygems.profile.UserProfileFragment;
 import com.singhajit.rubygems.trending.view.TrendingGemsFragment;
 
 public class MainActivity extends NetworkActivity implements INotifier {
