@@ -10,7 +10,8 @@
     android:label="@string/app_name"
     android:supportsRtl="true"
     android:theme="@style/RubyGemsTheme">
-    <activity android:name=".dashboard.MainActivity">
+    <activity android:name=".dashboard.MainActivity"
+      android:label="Home">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
 
