@@ -11,8 +11,8 @@ import com.google.gson.reflect.TypeToken;
 import com.singhajit.rubygems.core.APIClient;
 import com.singhajit.rubygems.trending.model.Gem;
 import com.singhajit.rubygems.trending.view.TrendingView;
-import com.singhajit.rubygems.trending.viewmodel.TrendingViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.singhajit.rubygems.core.RubyGemsAPIs.JUST_UPDATED;
@@ -48,10 +48,10 @@ public class TrendingPresenter {
     return new Response.Listener<String>() {
       @Override
       public void onResponse(String response) {
-        List<Gem> gems = new Gson().fromJson(response, new TypeToken<List<Gem>>() {
+        ArrayList<Gem> gems = new Gson().fromJson(response, new TypeToken<List<Gem>>() {
         }.getType());
         view.hideLoader();
-        view.render(new TrendingViewModel(gems));
+        view.render(gems);
       }
     };
   }

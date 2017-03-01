@@ -1,10 +1,13 @@
 package com.singhajit.rubygems.trending.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Gem {
+public class Gem implements Parcelable {
   private String name;
   private double downloads;
   private String version;
@@ -35,6 +38,36 @@ public class Gem {
     this.version = version;
     this.info = info;
   }
+
+  protected Gem(Parcel in) {
+    name = in.readString();
+    downloads = in.readDouble();
+    version = in.readString();
+    versionDownloads = in.readDouble();
+    info = in.readString();
+    licenses = in.createStringArrayList();
+    authors = in.readString();
+    projectURI = in.readString();
+    homepageURI = in.readString();
+    wikiURI = in.readString();
+    documentationURI = in.readString();
+    mailingListURI = in.readString();
+    sourceCodeURI = in.readString();
+    bugTrackerURI = in.readString();
+    dependencies = in.readParcelable(Dependencies.class.getClassLoader());
+  }
+
+  public static final Creator<Gem> CREATOR = new Creator<Gem>() {
+    @Override
+    public Gem createFromParcel(Parcel in) {
+      return new Gem(in);
+    }
+
+    @Override
+    public Gem[] newArray(int size) {
+      return new Gem[size];
+    }
+  };
 
   public String getName() {
     return name;
@@ -94,5 +127,29 @@ public class Gem {
 
   public Dependencies getDependencies() {
     return dependencies;
+  }
+
+  @Override
+  public int describeContents() {
+    return 0;
+  }
+
+  @Override
+  public void writeToParcel(Parcel parcel, int i) {
+    parcel.writeString(name);
+    parcel.writeDouble(downloads);
+    parcel.writeString(version);
+    parcel.writeDouble(versionDownloads);
+    parcel.writeString(info);
+    parcel.writeStringList(licenses);
+    parcel.writeString(authors);
+    parcel.writeString(projectURI);
+    parcel.writeString(homepageURI);
+    parcel.writeString(wikiURI);
+    parcel.writeString(documentationURI);
+    parcel.writeString(mailingListURI);
+    parcel.writeString(sourceCodeURI);
+    parcel.writeString(bugTrackerURI);
+    parcel.writeParcelable(dependencies, i);
   }
 }

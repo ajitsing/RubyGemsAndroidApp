@@ -5,7 +5,6 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +13,11 @@ import com.singhajit.rubygems.R;
 import com.singhajit.rubygems.core.APIClient;
 import com.singhajit.rubygems.core.INotifier;
 import com.singhajit.rubygems.databinding.TrendingBinding;
+import com.singhajit.rubygems.gemlist.GemListFragment;
+import com.singhajit.rubygems.trending.model.Gem;
 import com.singhajit.rubygems.trending.presenter.TrendingPresenter;
-import com.singhajit.rubygems.trending.viewmodel.TrendingViewModel;
+
+import java.util.ArrayList;
 
 public class TrendingGemsFragment extends Fragment implements TrendingView {
 
@@ -31,9 +33,12 @@ public class TrendingGemsFragment extends Fragment implements TrendingView {
   }
 
   @Override
-  public void render(TrendingViewModel viewModel) {
-    binding.gemList.setAdapter(GemAdapter.newInstance(viewModel));
-    binding.gemList.setLayoutManager(new LinearLayoutManager(getActivity()));
+  public void render(ArrayList<Gem> gems) {
+    GemListFragment fragment = new GemListFragment();
+    Bundle args = new Bundle();
+    args.putParcelableArrayList(GemListFragment.GEM_LIST, gems);
+    fragment.setArguments(args);
+    getFragmentManager().beginTransaction().replace(R.id.gem_list_parent, fragment).commit();
   }
 
   @Override

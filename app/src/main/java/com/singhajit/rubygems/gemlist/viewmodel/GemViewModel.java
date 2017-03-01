@@ -1,4 +1,4 @@
-package com.singhajit.rubygems.trending.viewmodel;
+package com.singhajit.rubygems.gemlist.viewmodel;
 
 import com.singhajit.rubygems.trending.model.Gem;
 

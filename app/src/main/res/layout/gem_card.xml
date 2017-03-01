@@ -6,7 +6,7 @@
 
     <variable
       name="viewModel"
-      type="com.singhajit.rubygems.trending.viewmodel.GemViewModel"/>
+      type="com.singhajit.rubygems.gemlist.viewmodel.GemViewModel"/>
   </data>
 
   <LinearLayout

@@ -1,4 +1,4 @@
-package com.singhajit.rubygems.trending.viewmodel;
+package com.singhajit.rubygems.gemlist.viewmodel;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
@@ -9,10 +9,10 @@ import com.singhajit.rubygems.trending.model.Gem;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TrendingViewModel extends BaseObservable {
+public class GemListViewModel extends BaseObservable {
   private List<GemViewModel> gemViewModels = new ArrayList<>();
 
-  public TrendingViewModel(List<Gem> gems) {
+  public GemListViewModel(List<Gem> gems) {
     gemViewModels = toGemViewModels(gems);
   }
 

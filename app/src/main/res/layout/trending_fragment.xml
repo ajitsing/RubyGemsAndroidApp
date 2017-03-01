@@ -19,16 +19,15 @@
     <ProgressBar
       android:id="@+id/progress_bar"
       style="?android:attr/progressBarStyleLarge"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
       android:layout_gravity="center"
       android:layout_marginTop="150dp"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
       android:visibility="gone"/>
 
-    <android.support.v7.widget.RecyclerView
-      android:id="@+id/gem_list"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:scrollbars="vertical"/>
+    <FrameLayout
+      android:id="@+id/gem_list_parent"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"/>
   </LinearLayout>
 </layout>

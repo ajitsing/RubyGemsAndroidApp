@@ -1,4 +1,4 @@
-package com.singhajit.rubygems.trending.view;
+package com.singhajit.rubygems.gemlist;
 
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
@@ -7,18 +7,18 @@ import android.view.ViewGroup;
 
 import com.singhajit.rubygems.R;
 import com.singhajit.rubygems.databinding.GemCardBinding;
-import com.singhajit.rubygems.trending.viewmodel.GemViewModel;
-import com.singhajit.rubygems.trending.viewmodel.TrendingViewModel;
+import com.singhajit.rubygems.gemlist.viewmodel.GemListViewModel;
+import com.singhajit.rubygems.gemlist.viewmodel.GemViewModel;
 
 public class GemAdapter extends RecyclerView.Adapter<GemViewHolder> {
-  private TrendingViewModel trendingViewModel;
+  private GemListViewModel gemListViewModel;
 
-  public static GemAdapter newInstance(TrendingViewModel trendingViewModel) {
+  public static GemAdapter newInstance(GemListViewModel trendingViewModel) {
     return new GemAdapter(trendingViewModel);
   }
 
-  private GemAdapter(TrendingViewModel trendingViewModel) {
-    this.trendingViewModel = trendingViewModel;
+  private GemAdapter(GemListViewModel gemListViewModel) {
+    this.gemListViewModel = gemListViewModel;
   }
 
   @Override
@@ -29,12 +29,12 @@ public class GemAdapter extends RecyclerView.Adapter<GemViewHolder> {
 
   @Override
   public void onBindViewHolder(GemViewHolder holder, int position) {
-    holder.render(trendingViewModel.getGemViewModels().get(position));
+    holder.render(gemListViewModel.getGemViewModels().get(position));
   }
 
   @Override
   public int getItemCount() {
-    return trendingViewModel.getGemViewModels().size();
+    return gemListViewModel.getGemViewModels().size();
   }
 }
 
