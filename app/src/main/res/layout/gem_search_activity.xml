@@ -58,7 +58,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:src="@mipmap/ic_clear_black_24dp"/>
+            android:onClick="@{(view) -> viewModel.clearSearchString()}"
+            android:src="@mipmap/ic_clear_black_24dp"
+            android:visibility="@{viewModel.clearTextVisibility.visibility}"/>
         </LinearLayout>
       </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
@@ -66,18 +68,18 @@
     <ProgressBar
       android:id="@+id/login_progress"
       style="?android:attr/progressBarStyleLarge"
-      android:layout_gravity="center"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:layout_gravity="center"
       android:layout_marginBottom="8dp"
       android:layout_marginTop="150dp"
       android:visibility="@{viewModel.loaderVisibility.visibility}"/>
 
     <FrameLayout
-      android:layout_marginTop="10dp"
       android:id="@+id/gem_results"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:layout_marginTop="10dp"
       android:visibility="@{viewModel.gemsVisibility.visibility}"/>
 
   </LinearLayout>

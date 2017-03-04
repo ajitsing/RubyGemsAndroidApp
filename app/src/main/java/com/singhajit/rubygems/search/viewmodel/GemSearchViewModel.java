@@ -9,14 +9,16 @@ import com.singhajit.rubygems.core.ViewVisibility;
 public class GemSearchViewModel extends BaseObservable {
   private ViewVisibility loaderVisibility = new ViewVisibility(false);
   private ViewVisibility gemsVisibility = new ViewVisibility(false);
-  private String searchString;
+  private String searchString = "";
 
+  @Bindable
   public String getSearchString() {
     return searchString;
   }
 
   public void setSearchString(String searchString) {
     this.searchString = searchString;
+    notifyPropertyChanged(BR.clearTextVisibility);
   }
 
   @Bindable
@@ -27,6 +29,16 @@ public class GemSearchViewModel extends BaseObservable {
   @Bindable
   public ViewVisibility getGemsVisibility() {
     return gemsVisibility;
+  }
+
+  @Bindable
+  public ViewVisibility getClearTextVisibility() {
+    return new ViewVisibility(!searchString.isEmpty());
+  }
+
+  public void clearSearchString() {
+    searchString = "";
+    notifyPropertyChanged(BR.searchString);
   }
 
   public void setGemsVisibility(boolean isVisible) {
