@@ -26,4 +26,8 @@ public class GemViewModel {
   public String getInfo() {
     return gem.getInfo();
   }
+
+  public String getVersionDownloads() {
+    return NumberFormat.getInstance().format(gem.getVersionDownloads());
+  }
 }

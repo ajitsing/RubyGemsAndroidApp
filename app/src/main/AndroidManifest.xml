@@ -21,6 +21,7 @@
     <activity
       android:name=".search.GemSearchActivity"
       android:windowSoftInputMode="stateVisible"/>
+    <activity android:name=".gemdetails.GemActivity"/>
   </application>
 
 </manifest>

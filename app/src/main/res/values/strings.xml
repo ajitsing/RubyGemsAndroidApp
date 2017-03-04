@@ -7,4 +7,6 @@
   <string name="password">Password</string>
   <string name="login">Login</string>
   <string name="search">Search</string>
+  <string name="total_downloads">Total Downloads</string>
+  <string name="for_this_version">For This Version</string>
 </resources>
