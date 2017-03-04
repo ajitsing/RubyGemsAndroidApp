@@ -1,16 +1,19 @@
 package com.singhajit.rubygems.dashboard;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
 
 import com.singhajit.rubygems.R;
 import com.singhajit.rubygems.core.INotifier;
 import com.singhajit.rubygems.core.NetworkActivity;
 import com.singhajit.rubygems.profile.UserProfileFragment;
+import com.singhajit.rubygems.search.GemSearchActivity;
 import com.singhajit.rubygems.trending.view.TrendingGemsFragment;
 
 public class MainActivity extends NetworkActivity implements INotifier {
@@ -34,6 +37,15 @@ public class MainActivity extends NetworkActivity implements INotifier {
   public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.main, menu);
     return true;
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    if (item.getItemId() == R.id.search) {
+      startActivity(new Intent(this, GemSearchActivity.class));
+      return true;
+    }
+    return super.onOptionsItemSelected(item);
   }
 
   @Override
