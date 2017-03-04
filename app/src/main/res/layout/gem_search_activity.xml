@@ -1,68 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:id="@+id/gem_list_container"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:background="@color/grey"
-  android:clipToPadding="false"
-  android:orientation="vertical"
-  android:paddingBottom="@dimen/activity_vertical_margin"
-  android:paddingLeft="5dp"
-  android:paddingRight="5dp"
-  android:paddingTop="@dimen/activity_vertical_margin">
+<layout>
 
-  <android.support.design.widget.AppBarLayout
+  <data class="GemSearchBinding">
+
+    <variable
+      name="viewModel"
+      type="com.singhajit.rubygems.search.viewmodel.GemSearchViewModel"/>
+  </data>
+
+  <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/gem_list_container"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+    android:layout_height="match_parent"
+    android:background="@color/grey"
+    android:clipToPadding="false"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingTop="@dimen/activity_vertical_margin">
 
-    <android.support.v7.widget.Toolbar
-      android:id="@+id/toolbar"
+    <android.support.design.widget.AppBarLayout
+      xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
       android:layout_width="match_parent"
-      android:layout_height="?attr/actionBarSize"
-      android:background="@color/grey"
-      app:layout_scrollFlags="scroll|enterAlways"
-      app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+      android:layout_height="wrap_content"
+      android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-      <LinearLayout
+      <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/grey"
+        app:layout_scrollFlags="scroll|enterAlways"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-        <EditText
-          android:layout_width="240dp"
-          android:layout_height="?attr/actionBarSize"
-          android:background="@android:color/transparent"
-          android:imeOptions="actionSearch"
-          android:inputType="text"
-          android:paddingEnd="20dp"
-          android:textColor="@color/light_black"/>
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:orientation="horizontal">
 
-        <ImageButton
-          android:id="@+id/clear"
-          style="?android:buttonBarButtonStyle"
-          android:layout_marginTop="2dp"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:src="@mipmap/ic_clear_black_24dp"/>
-      </LinearLayout>
-    </android.support.v7.widget.Toolbar>
-  </android.support.design.widget.AppBarLayout>
+          <EditText
+            android:id="@+id/search"
+            android:layout_width="240dp"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/transparent"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:paddingEnd="20dp"
+            android:text="@={viewModel.searchString}"
+            android:textColor="@color/light_black"/>
 
-  <ProgressBar
-    android:id="@+id/progress_bar"
-    style="?android:attr/progressBarStyleLarge"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:layout_marginTop="150dp"
-    android:visibility="gone"/>
+          <ImageButton
+            android:id="@+id/clear"
+            style="?android:buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:src="@mipmap/ic_clear_black_24dp"/>
+        </LinearLayout>
+      </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
 
-  <FrameLayout
-    android:id="@+id/gem_list_parent"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"/>
-</LinearLayout>
+    <ProgressBar
+      android:id="@+id/login_progress"
+      style="?android:attr/progressBarStyleLarge"
+      android:layout_gravity="center"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="8dp"
+      android:layout_marginTop="150dp"
+      android:visibility="@{viewModel.loaderVisibility.visibility}"/>
+
+    <FrameLayout
+      android:layout_marginTop="10dp"
+      android:id="@+id/gem_results"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:visibility="@{viewModel.gemsVisibility.visibility}"/>
+
+  </LinearLayout>
+</layout>
