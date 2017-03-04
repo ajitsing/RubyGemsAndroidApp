@@ -1,11 +1,13 @@
 package com.singhajit.rubygems.search;
 
+import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.singhajit.rubygems.R;
@@ -61,9 +63,15 @@ public class GemSearchActivity extends NetworkActivity implements GemSearchView 
     binding.search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
       @Override
       public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+        hideKeyboard();
         presenter.onSearch(gemSearchViewModel);
         return true;
       }
     });
+  }
+
+  private void hideKeyboard() {
+    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+    imm.hideSoftInputFromWindow(binding.getRoot().getWindowToken(), 0);
   }
 }

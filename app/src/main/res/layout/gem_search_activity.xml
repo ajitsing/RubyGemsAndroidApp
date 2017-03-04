@@ -44,6 +44,8 @@
           <EditText
             android:id="@+id/search"
             android:layout_width="240dp"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
             android:layout_height="?attr/actionBarSize"
             android:background="@android:color/transparent"
             android:imeOptions="actionSearch"
