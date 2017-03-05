@@ -5,8 +5,10 @@ import android.text.TextUtils;
 
 import com.singhajit.rubygems.R;
 import com.singhajit.rubygems.core.StringResolver;
+import com.singhajit.rubygems.core.ViewVisibility;
 import com.singhajit.rubygems.gemdetails.viewmodel.DependencyViewModel;
 import com.singhajit.rubygems.gemdetails.viewmodel.ExternalLinksViewModel;
+import com.singhajit.rubygems.trending.model.Dependencies;
 import com.singhajit.rubygems.trending.model.Dependency;
 import com.singhajit.rubygems.trending.model.Gem;
 
@@ -49,6 +51,15 @@ public class GemViewModel {
     return stringResolver.getString(R.string.development_dependencies, gem.getDependencies().getDevelopment().size());
   }
 
+  public ViewVisibility getDevelopmentDependencyVisibility() {
+    Dependencies dependencies = gem.getDependencies();
+    return new ViewVisibility(dependencies.hasDevDependencies());
+  }
+
+  public ViewVisibility getRuntimeDependencyVisibility() {
+    Dependencies dependencies = gem.getDependencies();
+    return new ViewVisibility(dependencies.hasRuntimeDependencies());
+  }
 
   public List<DependencyViewModel> getDevelopmentDependencyViewModels() {
     return toDependencyViewModels(gem.getDependencies().getDevelopment());

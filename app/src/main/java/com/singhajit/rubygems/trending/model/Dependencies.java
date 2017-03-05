@@ -44,4 +44,12 @@ public class Dependencies implements Parcelable {
     parcel.writeTypedList(development);
     parcel.writeTypedList(runtime);
   }
+
+  public boolean hasDevDependencies() {
+    return development != null && !development.isEmpty();
+  }
+
+  public boolean hasRuntimeDependencies() {
+    return runtime != null && !runtime.isEmpty();
+  }
 }
