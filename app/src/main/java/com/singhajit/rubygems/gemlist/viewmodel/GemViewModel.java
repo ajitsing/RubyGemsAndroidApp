@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import com.singhajit.rubygems.R;
 import com.singhajit.rubygems.core.StringResolver;
 import com.singhajit.rubygems.gemdetails.viewmodel.DependencyViewModel;
+import com.singhajit.rubygems.gemdetails.viewmodel.ExternalLinksViewModel;
 import com.singhajit.rubygems.trending.model.Dependency;
 import com.singhajit.rubygems.trending.model.Gem;
 
@@ -16,10 +17,16 @@ import java.util.List;
 public class GemViewModel {
   private final Gem gem;
   private final StringResolver stringResolver;
+  private ExternalLinksViewModel externalLinksViewModel;
 
   public GemViewModel(Gem gem, StringResolver stringResolver) {
     this.gem = gem;
     this.stringResolver = stringResolver;
+    externalLinksViewModel = new ExternalLinksViewModel(gem);
+  }
+
+  public ExternalLinksViewModel getExternalLinksViewModel() {
+    return externalLinksViewModel;
   }
 
   public String getName() {

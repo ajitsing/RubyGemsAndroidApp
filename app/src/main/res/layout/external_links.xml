@@ -1,55 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_width="match_parent"
-  android:layout_height="wrap_content"
-  android:elevation="10dp">
+<layout>
 
-  <LinearLayout
+  <data>
+
+    <variable
+      name="viewModel"
+      type="com.singhajit.rubygems.gemdetails.viewmodel.ExternalLinksViewModel"/>
+  </data>
+
+  <android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
-    android:gravity="center_horizontal">
+    android:elevation="10dp">
 
-    <ImageView
-      android:layout_width="wrap_content"
+    <LinearLayout
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_gravity="center"
-      android:background="@mipmap/ic_home_black_36dp"/>
+      android:layout_margin="10dp"
+      android:gravity="center_horizontal">
 
-    <ImageView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="center"
-      android:layout_marginStart="20dp"
-      android:background="@mipmap/ic_library_books_black_36dp"/>
+      <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@mipmap/ic_home_black_36dp"
+        android:visibility="@{viewModel.homePageLinkVisibility.visibility}"/>
 
-    <ImageView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="center"
-      android:layout_marginStart="20dp"
-      android:background="@mipmap/ic_code_black_36dp"/>
+      <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="20dp"
+        android:background="@mipmap/ic_library_books_black_36dp"
+        android:visibility="@{viewModel.documentationLinkVisibility.visibility}"/>
 
-    <ImageView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="center"
-      android:layout_marginStart="20dp"
-      android:background="@mipmap/ic_import_contacts_black_36dp"/>
+      <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="20dp"
+        android:background="@mipmap/ic_code_black_36dp"
+        android:visibility="@{viewModel.sourceCodeLinkVisibility.visibility}"/>
 
-    <ImageView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="center"
-      android:layout_marginStart="20dp"
-      android:background="@mipmap/ic_email_black_36dp"/>
+      <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="20dp"
+        android:background="@mipmap/ic_import_contacts_black_36dp"
+        android:visibility="@{viewModel.wikiLinkVisibility.visibility}"/>
 
-    <ImageView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="center"
-      android:layout_marginStart="20dp"
-      android:background="@mipmap/ic_bug_report_black_36dp"/>
-  </LinearLayout>
-</android.support.v7.widget.CardView>
+      <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="20dp"
+        android:background="@mipmap/ic_email_black_36dp"
+        android:visibility="@{viewModel.mailingListLinkVisibility.visibility}"/>
+
+      <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="20dp"
+        android:background="@mipmap/ic_bug_report_black_36dp"
+        android:visibility="@{viewModel.bugTrackerLinkVisibility.visibility}"/>
+    </LinearLayout>
+  </android.support.v7.widget.CardView>
+</layout>
