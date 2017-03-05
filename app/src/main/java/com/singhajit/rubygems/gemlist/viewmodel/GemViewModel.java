@@ -74,7 +74,7 @@ public class GemViewModel {
   }
 
   public String getLicenses() {
-    return gem.getLicenses() != null ? TextUtils.join(",", gem.getLicenses()) : stringResolver.getString(R.string.not_available);
+    return gem.hasLicenses() ? TextUtils.join(",", gem.getLicenses()) : stringResolver.getString(R.string.not_available);
   }
 
   public String getInfo() {
