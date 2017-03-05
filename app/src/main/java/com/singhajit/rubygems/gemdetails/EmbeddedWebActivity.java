@@ -1,13 +1,10 @@
 package com.singhajit.rubygems.gemdetails;
 
-import android.app.ProgressDialog;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
-import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
@@ -15,25 +12,25 @@ import android.webkit.WebViewClient;
 
 import com.singhajit.rubygems.R;
 import com.singhajit.rubygems.core.BaseActivity;
+import com.singhajit.rubygems.databinding.EmbeddedWebBinding;
 
 public class EmbeddedWebActivity extends BaseActivity {
   public final static String LINK_EXTRA = "LINK";
+  private EmbeddedWebBinding binding;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
     final String link = getIntent().getStringExtra(LINK_EXTRA);
     super.onCreate(savedInstanceState);
 
-    ViewGroup rootView = (ViewGroup) getWindow().getDecorView().getRootView();
-    View view = LayoutInflater.from(this).inflate(R.layout.embedded_web_toolbar, rootView);
-    Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
-    setSupportActionBar(toolbar);
+    binding = DataBindingUtil.setContentView(this, R.layout.embedded_web_activity);
+    setSupportActionBar(binding.toolbar);
 
     getSupportActionBar().setHomeButtonEnabled(true);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     setTitle(link);
 
-    final WebView webView = new WebView(this);
+    final WebView webView = binding.webView;
     webView.getSettings().setJavaScriptEnabled(true);
 
     webView.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
@@ -42,23 +39,16 @@ public class EmbeddedWebActivity extends BaseActivity {
     webView.getSettings().setUseWideViewPort(true);
     webView.getSettings().setLoadWithOverviewMode(true);
 
-    final ProgressDialog progressDialog = new ProgressDialog(this);
-    progressDialog.setCancelable(false);
-    progressDialog.setMessage(getString(R.string.loading));
-    progressDialog.show();
-
-    webView.setWebViewClient(getClient(link, webView, progressDialog));
-
+    webView.setWebViewClient(getClient(link));
     webView.loadUrl(link);
-    setContentView(webView);
   }
 
   @NonNull
-  private WebViewClient getClient(final String link, final WebView webView, final ProgressDialog progressDialog) {
+  private WebViewClient getClient(final String link) {
     return new WebViewClient() {
       @Override
       public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
-        Snackbar.make(webView, error.toString(), Snackbar.LENGTH_LONG).show();
+        Snackbar.make(binding.getRoot(), error.toString(), Snackbar.LENGTH_LONG).show();
       }
 
       @Override
@@ -69,7 +59,7 @@ public class EmbeddedWebActivity extends BaseActivity {
 
       @Override
       public void onPageFinished(WebView view, String url) {
-        progressDialog.dismiss();
+        binding.progressBar.setVisibility(View.GONE);
       }
     };
   }
