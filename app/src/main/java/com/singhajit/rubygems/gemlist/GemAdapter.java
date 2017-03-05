@@ -7,18 +7,17 @@ import android.view.ViewGroup;
 
 import com.singhajit.rubygems.R;
 import com.singhajit.rubygems.databinding.GemCardBinding;
+import com.singhajit.rubygems.gemlist.presenter.GemListPresenter;
 import com.singhajit.rubygems.gemlist.viewmodel.GemListViewModel;
 import com.singhajit.rubygems.gemlist.viewmodel.GemViewModel;
 
 public class GemAdapter extends RecyclerView.Adapter<GemViewHolder> {
   private GemListViewModel gemListViewModel;
+  private final GemListPresenter presenter;
 
-  public static GemAdapter newInstance(GemListViewModel trendingViewModel) {
-    return new GemAdapter(trendingViewModel);
-  }
-
-  private GemAdapter(GemListViewModel gemListViewModel) {
+  public GemAdapter(GemListViewModel gemListViewModel, GemListPresenter presenter) {
     this.gemListViewModel = gemListViewModel;
+    this.presenter = presenter;
   }
 
   @Override
@@ -29,7 +28,7 @@ public class GemAdapter extends RecyclerView.Adapter<GemViewHolder> {
 
   @Override
   public void onBindViewHolder(GemViewHolder holder, int position) {
-    holder.render(gemListViewModel.getGemViewModels().get(position));
+    holder.render(gemListViewModel.getGemViewModels().get(position), presenter);
   }
 
   @Override
@@ -46,7 +45,8 @@ class GemViewHolder extends RecyclerView.ViewHolder {
     this.binding = binding;
   }
 
-  void render(GemViewModel gemViewModel) {
+  void render(GemViewModel gemViewModel, GemListPresenter presenter) {
     binding.setViewModel(gemViewModel);
+    binding.setPresenter(presenter);
   }
 }

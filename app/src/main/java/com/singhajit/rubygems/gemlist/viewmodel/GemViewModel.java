@@ -74,6 +74,10 @@ public class GemViewModel {
     return gem.getAuthors();
   }
 
+  public Gem getGem() {
+    return gem;
+  }
+
   @NonNull
   private List<DependencyViewModel> toDependencyViewModels(List<Dependency> dependencies) {
     ArrayList<DependencyViewModel> dependencyViewModels = new ArrayList<>();
