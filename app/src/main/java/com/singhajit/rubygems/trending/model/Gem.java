@@ -97,6 +97,10 @@ public class Gem implements Parcelable {
     return authors;
   }
 
+  public boolean hasAuthors() {
+    return authors != null && !authors.isEmpty();
+  }
+
   public String getProjectURI() {
     return projectURI;
   }

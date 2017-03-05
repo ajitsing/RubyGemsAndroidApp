@@ -61,6 +61,10 @@ public class GemViewModel {
     return new ViewVisibility(dependencies.hasRuntimeDependencies());
   }
 
+  public ViewVisibility getAuthorsVisibility() {
+    return new ViewVisibility(gem.hasAuthors());
+  }
+
   public List<DependencyViewModel> getDevelopmentDependencyViewModels() {
     return toDependencyViewModels(gem.getDependencies().getDevelopment());
   }
