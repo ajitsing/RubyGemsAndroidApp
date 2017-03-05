@@ -14,4 +14,5 @@
   <string name="authors">AUTHORS</string>
   <string name="license">LICENSE</string>
   <string name="loading">Loading…</string>
+  <string name="not_available">N/A</string>
 </resources>
