@@ -8,6 +8,10 @@
     <import type="com.singhajit.rubygems.gemdetails.adapter.DependencyAdapter"/>
 
     <variable
+      name="presenter"
+      type="com.singhajit.rubygems.gemdetails.presenter.GemPresenter"/>
+
+    <variable
       name="viewModel"
       type="com.singhajit.rubygems.gemlist.viewmodel.GemViewModel"/>
   </data>
@@ -138,6 +142,7 @@
 
             <include
               layout="@layout/external_links"
+              app:presenter="@{presenter}"
               app:viewModel="@{viewModel.externalLinksViewModel}"/>
           </LinearLayout>
         </android.support.v7.widget.CardView>

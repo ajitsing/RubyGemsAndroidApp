@@ -13,4 +13,5 @@
   <string name="development_dependencies">DEVELOPMENT DEPENDENCIES (%s)</string>
   <string name="authors">AUTHORS</string>
   <string name="license">LICENSE</string>
+  <string name="loading">Loading…</string>
 </resources>
