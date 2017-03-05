@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
@@ -12,8 +11,9 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.singhajit.rubygems.R;
+import com.singhajit.rubygems.core.BaseActivity;
 
-public class EmbeddedWebActivity extends AppCompatActivity {
+public class EmbeddedWebActivity extends BaseActivity {
   public final static String LINK_EXTRA = "LINK";
 
   @Override
