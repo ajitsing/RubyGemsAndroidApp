@@ -4,7 +4,10 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
@@ -20,6 +23,16 @@ public class EmbeddedWebActivity extends BaseActivity {
   public void onCreate(Bundle savedInstanceState) {
     final String link = getIntent().getStringExtra(LINK_EXTRA);
     super.onCreate(savedInstanceState);
+
+    ViewGroup rootView = (ViewGroup) getWindow().getDecorView().getRootView();
+    View view = LayoutInflater.from(this).inflate(R.layout.embedded_web_toolbar, rootView);
+    Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+    setSupportActionBar(toolbar);
+
+    getSupportActionBar().setHomeButtonEnabled(true);
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    setTitle(link);
+
     final WebView webView = new WebView(this);
     webView.getSettings().setJavaScriptEnabled(true);
 
