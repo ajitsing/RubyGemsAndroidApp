@@ -73,7 +73,7 @@ public class Gem implements Parcelable {
     return name;
   }
 
-  public double getDownloads() {
+  public Double getDownloads() {
     return downloads;
   }
 

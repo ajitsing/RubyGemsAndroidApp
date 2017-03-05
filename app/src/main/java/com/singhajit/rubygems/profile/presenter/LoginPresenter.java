@@ -17,6 +17,8 @@ import com.singhajit.rubygems.profile.viewmodel.LoginViewModel;
 import com.singhajit.rubygems.trending.model.Gem;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class LoginPresenter {
   private final APIClient apiClient;
@@ -52,11 +54,21 @@ public class LoginPresenter {
       public void onResponse(String response) {
         ArrayList<Gem> gems = new Gson().fromJson(response, new TypeToken<ArrayList<Gem>>() {
         }.getType());
-        view.render(gems);
+        view.render(sortGems(gems));
         viewModel.setLoaderVisibility(false);
       }
     }, onError(viewModel));
     apiClient.makeRequest(userGemsRequest);
+  }
+
+  private ArrayList<Gem> sortGems(ArrayList<Gem> gems) {
+    Collections.sort(gems, new Comparator<Gem>() {
+      @Override
+      public int compare(Gem gem1, Gem gem2) {
+        return gem2.getDownloads().compareTo(gem1.getDownloads());
+      }
+    });
+    return gems;
   }
 
   @NonNull
