@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.singhajit.rubygems.R;
+import com.singhajit.rubygems.core.StringResolver;
 import com.singhajit.rubygems.databinding.GemBinding;
 import com.singhajit.rubygems.gemlist.viewmodel.GemViewModel;
 import com.singhajit.rubygems.trending.model.Gem;
@@ -19,7 +20,7 @@ public class GemActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     Gem gem = getIntent().getParcelableExtra(GEM_EXTRA);
     GemBinding binding = DataBindingUtil.setContentView(this, R.layout.gem_activity);
-    binding.setViewModel(new GemViewModel(gem));
+    binding.setViewModel(new GemViewModel(gem, new StringResolver(this)));
 
     Toolbar toolbar = binding.toolbar;
     setSupportActionBar(toolbar);

@@ -9,4 +9,8 @@
   <string name="search">Search</string>
   <string name="total_downloads">Total Downloads</string>
   <string name="for_this_version">For This Version</string>
+  <string name="runtime_dependencies">RUNTIME DEPENDENCIES (%s)</string>
+  <string name="development_dependencies">DEVELOPMENT DEPENDENCIES (%s)</string>
+  <string name="authors">AUTHORS</string>
+  <string name="license">LICENSE</string>
 </resources>

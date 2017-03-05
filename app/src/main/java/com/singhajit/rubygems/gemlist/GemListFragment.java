@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.singhajit.rubygems.R;
+import com.singhajit.rubygems.core.StringResolver;
 import com.singhajit.rubygems.databinding.GemListBinding;
 import com.singhajit.rubygems.gemlist.viewmodel.GemListViewModel;
 import com.singhajit.rubygems.trending.model.Gem;
@@ -24,7 +25,7 @@ public class GemListFragment extends Fragment {
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     ArrayList<Gem> gems = getArguments().getParcelableArrayList(GEM_LIST);
     GemListBinding binding = DataBindingUtil.inflate(inflater, R.layout.gemlist_fragment, container, false);
-    binding.gemList.setAdapter(GemAdapter.newInstance(new GemListViewModel(gems)));
+    binding.gemList.setAdapter(GemAdapter.newInstance(new GemListViewModel(gems, new StringResolver(getActivity()))));
     binding.gemList.setLayoutManager(new LinearLayoutManager(getActivity()));
     return binding.getRoot();
   }
