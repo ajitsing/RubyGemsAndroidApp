@@ -113,8 +113,24 @@ public class Gem implements Parcelable {
     return homepageURI;
   }
 
+  public boolean hasHomepageURI() {
+    return homepageURI != null && !homepageURI.isEmpty();
+  }
+
+  public boolean hasProjectURI() {
+    return projectURI != null && !projectURI.isEmpty();
+  }
+
   public String getWikiURI() {
     return wikiURI;
+  }
+
+  public boolean hasWikiURI() {
+    return wikiURI != null && !wikiURI.isEmpty();
+  }
+
+  public boolean hasDocumentationURI() {
+    return documentationURI != null && !documentationURI.isEmpty();
   }
 
   public String getDocumentationURI() {
@@ -125,12 +141,24 @@ public class Gem implements Parcelable {
     return mailingListURI;
   }
 
+  public boolean hasMailingListURI() {
+    return mailingListURI != null && !mailingListURI.isEmpty();
+  }
+
   public String getSourceCodeURI() {
     return sourceCodeURI;
   }
 
+  public boolean hasSourceCodeURI() {
+    return sourceCodeURI != null && !sourceCodeURI.isEmpty();
+  }
+
   public String getBugTrackerURI() {
     return bugTrackerURI;
+  }
+
+  public boolean hasBugTrackerURI() {
+    return bugTrackerURI != null && !bugTrackerURI.isEmpty();
   }
 
   public Dependencies getDependencies() {

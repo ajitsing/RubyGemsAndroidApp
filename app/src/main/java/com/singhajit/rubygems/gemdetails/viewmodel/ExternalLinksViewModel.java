@@ -39,28 +39,27 @@ public class ExternalLinksViewModel {
     return gem.getBugTrackerURI();
   }
 
-
   public ViewVisibility getHomePageLinkVisibility() {
-    return new ViewVisibility(gem.getHomepageURI() != null);
+    return new ViewVisibility(gem.hasHomepageURI());
   }
 
   public ViewVisibility getSourceCodeLinkVisibility() {
-    return new ViewVisibility(gem.getSourceCodeURI() != null);
+    return new ViewVisibility(gem.hasSourceCodeURI());
   }
 
   public ViewVisibility getWikiLinkVisibility() {
-    return new ViewVisibility(gem.getWikiURI() != null);
+    return new ViewVisibility(gem.hasWikiURI());
   }
 
   public ViewVisibility getMailingListLinkVisibility() {
-    return new ViewVisibility(gem.getMailingListURI() != null);
+    return new ViewVisibility(gem.hasMailingListURI());
   }
 
   public ViewVisibility getBugTrackerLinkVisibility() {
-    return new ViewVisibility(gem.getBugTrackerURI() != null);
+    return new ViewVisibility(gem.hasBugTrackerURI());
   }
 
   public ViewVisibility getDocumentationLinkVisibility() {
-    return new ViewVisibility(gem.getDocumentationURI() != null);
+    return new ViewVisibility(gem.hasDocumentationURI());
   }
 }
