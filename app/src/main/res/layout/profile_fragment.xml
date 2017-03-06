@@ -106,6 +106,29 @@
                 android:textStyle="bold"
                 tools:text="20,000"/>
             </LinearLayout>
+
+            <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="10dp"
+              android:orientation="horizontal">
+
+              <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:text="@string/total_gems"
+                android:textColor="@color/cardview_dark_background"/>
+
+              <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="@{profileViewModel.totalGems}"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold"
+                tools:text="20"/>
+            </LinearLayout>
           </LinearLayout>
         </android.support.v7.widget.CardView>
 

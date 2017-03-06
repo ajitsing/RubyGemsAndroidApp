@@ -5,13 +5,14 @@ import com.singhajit.rubygems.trending.model.Gem;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ProfileViewModel {
   private final String username;
-  private final List<Gem> gems;
+  private List<Gem> gems = new ArrayList<>();
 
   public ProfileViewModel(List<Gem> gems, String username) {
     this.username = username;
@@ -54,6 +55,10 @@ public class ProfileViewModel {
       totalDownloads = totalDownloads + gem.getDownloads();
     }
     return NumberFormat.getInstance().format(totalDownloads);
+  }
+
+  public String getTotalGems() {
+    return NumberFormat.getInstance().format(gems.size());
   }
 
   private boolean isEmail(String email) {
