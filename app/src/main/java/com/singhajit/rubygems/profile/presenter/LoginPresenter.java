@@ -46,7 +46,6 @@ public class LoginPresenter {
       viewModel.setLoginFormVisibility(false);
       viewModel.setLoaderVisibility(true);
       getUserGems(viewModel);
-      viewModel.setProfileCardVisibility(true);
     }
   }
 
@@ -58,6 +57,7 @@ public class LoginPresenter {
         }.getType());
         view.render(sortGems(gems));
         viewModel.setLoaderVisibility(false);
+        viewModel.setProfileCardVisibility(true);
       }
     }, onError(viewModel));
     apiClient.makeRequest(userGemsRequest);
