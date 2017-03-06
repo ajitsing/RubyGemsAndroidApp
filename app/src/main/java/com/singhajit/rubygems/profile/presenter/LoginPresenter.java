@@ -25,6 +25,7 @@ public class LoginPresenter {
   private final SharedPrefRepo sharedPrefRepo;
   private final ProfileView view;
   private final String API_KEY = "API_KEY";
+  public static final String USERNAME = "USERNAME";
 
   public LoginPresenter(APIClient apiClient, SharedPrefRepo sharedPrefRepo, ProfileView view) {
     this.apiClient = apiClient;
@@ -45,6 +46,7 @@ public class LoginPresenter {
       viewModel.setLoginFormVisibility(false);
       viewModel.setLoaderVisibility(true);
       getUserGems(viewModel);
+      viewModel.setProfileCardVisibility(true);
     }
   }
 
@@ -78,6 +80,7 @@ public class LoginPresenter {
       public void onResponse(String response) {
         RubyGemsAPIKey rubyGemsAPIKey = new Gson().fromJson(response, RubyGemsAPIKey.class);
         sharedPrefRepo.put(API_KEY, rubyGemsAPIKey.getKey());
+        sharedPrefRepo.put(USERNAME, viewModel.getUsername());
         getUserGems(viewModel);
       }
     };

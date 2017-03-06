@@ -11,6 +11,7 @@ public class LoginViewModel extends BaseObservable {
   private String password;
   private ViewVisibility loginFormVisibility = new ViewVisibility(true);
   private ViewVisibility loaderVisibility = new ViewVisibility(false);
+  private ViewVisibility profileCardVisibility = new ViewVisibility(false);
 
   public String getUsername() {
     return username;
@@ -33,9 +34,19 @@ public class LoginViewModel extends BaseObservable {
     return loginFormVisibility;
   }
 
+  @Bindable
+  public ViewVisibility getProfileCardVisibility() {
+    return profileCardVisibility;
+  }
+
   public void setLoginFormVisibility(boolean isVisible) {
     this.loginFormVisibility = new ViewVisibility(isVisible);
     notifyPropertyChanged(BR.loginFormVisibility);
+  }
+
+  public void setProfileCardVisibility(boolean isVisible) {
+    this.profileCardVisibility = new ViewVisibility(isVisible);
+    notifyPropertyChanged(BR.profileCardVisibility);
   }
 
   @Bindable
