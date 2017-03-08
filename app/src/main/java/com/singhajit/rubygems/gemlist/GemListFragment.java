@@ -34,6 +34,7 @@ public class GemListFragment extends Fragment implements GemListAction {
     GemAdapter adapter = new GemAdapter(new GemListViewModel(gems, new StringResolver(getActivity())), presenter);
     binding.gemList.setAdapter(adapter);
     binding.gemList.setLayoutManager(new LinearLayoutManager(getActivity()));
+    binding.gemList.setNestedScrollingEnabled(false);
     return binding.getRoot();
   }
 
