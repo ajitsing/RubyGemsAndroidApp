@@ -1,6 +1,7 @@
 <resources>
   <string name="app_name">RubyGems</string>
   <string name="trending">Trending</string>
+  <string name="new_gems">New</string>
   <string name="profile">Profile</string>
   <string name="downloads">Downloads</string>
   <string name="username">Username</string>

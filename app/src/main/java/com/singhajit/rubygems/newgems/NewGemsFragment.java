@@ -1,5 +1,4 @@
-package com.singhajit.rubygems.trending.view;
-
+package com.singhajit.rubygems.newgems;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -12,29 +11,28 @@ import android.view.ViewGroup;
 import com.singhajit.rubygems.R;
 import com.singhajit.rubygems.core.APIClient;
 import com.singhajit.rubygems.core.INotifier;
-import com.singhajit.rubygems.databinding.TrendingBinding;
 import com.singhajit.rubygems.gemlist.GemListRenderer;
+import com.singhajit.rubygems.newgems.presenter.NewGemsPresenter;
 import com.singhajit.rubygems.trending.model.Gem;
-import com.singhajit.rubygems.trending.presenter.TrendingPresenter;
+import com.singhajit.rubygems.trending.view.GemsView;
 
 import java.util.ArrayList;
 
-public class TrendingGemsFragment extends Fragment implements GemsView {
-
-  private TrendingBinding binding;
+public class NewGemsFragment extends Fragment implements GemsView {
+  private NewGemsBinding binding;
 
   @Nullable
   @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-    binding = DataBindingUtil.inflate(inflater, R.layout.trending_fragment, container, false);
-    TrendingPresenter presenter = new TrendingPresenter((APIClient) getActivity(), this);
+    binding = DataBindingUtil.inflate(inflater, R.layout.newgems_fragment, container, false);
+    NewGemsPresenter presenter = new NewGemsPresenter((APIClient) getActivity(), this);
     presenter.render();
     return binding.getRoot();
   }
 
   @Override
   public void render(ArrayList<Gem> gems) {
-    GemListRenderer gemListRenderer = new GemListRenderer(gems, binding.recentlyUpdatedGemsList);
+    GemListRenderer gemListRenderer = new GemListRenderer(gems, binding.recentlyAddedGemsList);
     gemListRenderer.render();
   }
 
@@ -52,4 +50,5 @@ public class TrendingGemsFragment extends Fragment implements GemsView {
   public void notify(String message) {
     ((INotifier) getActivity()).notify(message);
   }
+
 }

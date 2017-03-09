@@ -5,7 +5,7 @@ import com.singhajit.rubygems.trending.model.Gem;
 
 import java.util.ArrayList;
 
-public interface TrendingView extends INotifier {
+public interface GemsView extends INotifier {
   void render(ArrayList<Gem> gems);
 
   void showLoader();

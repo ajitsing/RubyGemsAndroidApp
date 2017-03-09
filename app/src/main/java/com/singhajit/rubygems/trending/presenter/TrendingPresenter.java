@@ -2,57 +2,21 @@ package com.singhajit.rubygems.trending.presenter;
 
 import android.support.annotation.NonNull;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.singhajit.rubygems.core.APIClient;
-import com.singhajit.rubygems.trending.model.Gem;
-import com.singhajit.rubygems.trending.view.TrendingView;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.singhajit.rubygems.newgems.presenter.GemsPresenter;
+import com.singhajit.rubygems.trending.view.GemsView;
 
 import static com.singhajit.rubygems.core.RubyGemsAPIs.JUST_UPDATED;
 
-public class TrendingPresenter {
-  private final APIClient apiClient;
-  private final TrendingView view;
+public class TrendingPresenter extends GemsPresenter {
 
-  public TrendingPresenter(APIClient apiClient, TrendingView view) {
-    this.apiClient = apiClient;
-    this.view = view;
-  }
-
-  public void render() {
-    StringRequest request = new StringRequest(Request.Method.GET, JUST_UPDATED, onSuccess(), onError());
-    view.showLoader();
-    apiClient.makeRequest(request);
+  public TrendingPresenter(APIClient apiClient, GemsView view) {
+    super(apiClient, view);
   }
 
   @NonNull
-  private Response.ErrorListener onError() {
-    return new Response.ErrorListener() {
-      @Override
-      public void onErrorResponse(VolleyError error) {
-        view.hideLoader();
-        view.notify(error.getMessage());
-      }
-    };
-  }
-
-  @NonNull
-  private Response.Listener<String> onSuccess() {
-    return new Response.Listener<String>() {
-      @Override
-      public void onResponse(String response) {
-        ArrayList<Gem> gems = new Gson().fromJson(response, new TypeToken<List<Gem>>() {
-        }.getType());
-        view.hideLoader();
-        view.render(gems);
-      }
-    };
+  @Override
+  public String getGemsUrl() {
+    return JUST_UPDATED;
   }
 }

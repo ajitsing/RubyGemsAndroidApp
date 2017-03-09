@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import com.singhajit.rubygems.R;
 import com.singhajit.rubygems.core.INotifier;
 import com.singhajit.rubygems.core.NetworkActivity;
+import com.singhajit.rubygems.newgems.NewGemsFragment;
 import com.singhajit.rubygems.profile.UserProfileFragment;
 import com.singhajit.rubygems.search.GemSearchActivity;
 import com.singhajit.rubygems.trending.view.TrendingGemsFragment;
@@ -55,6 +56,7 @@ public class MainActivity extends NetworkActivity implements INotifier {
 
   private void setupViewPager(ViewPager viewPager) {
     ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+    adapter.addFragment(new ViewPagerFragment(new NewGemsFragment(), getString(R.string.new_gems)));
     adapter.addFragment(new ViewPagerFragment(new TrendingGemsFragment(), getString(R.string.trending)));
     adapter.addFragment(new ViewPagerFragment(new UserProfileFragment(), getString(R.string.profile)));
     viewPager.setAdapter(adapter);
