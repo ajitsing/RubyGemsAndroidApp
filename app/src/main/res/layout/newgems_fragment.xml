@@ -3,7 +3,7 @@
 
   <data class="NewGemsBinding"/>
 
-  <LinearLayout
+  <android.support.v4.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/gem_list_container"
     android:layout_width="match_parent"
@@ -16,19 +16,25 @@
     android:paddingRight="5dp"
     android:paddingTop="@dimen/activity_vertical_margin">
 
-    <ProgressBar
-      android:id="@+id/progress_bar"
-      style="?android:attr/progressBarStyleLarge"
+    <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_gravity="center"
-      android:layout_marginTop="150dp"
-      android:visibility="gone"/>
+      android:orientation="vertical">
 
-    <android.support.v7.widget.RecyclerView
-      android:id="@+id/recently_added_gems_list"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:scrollbars="vertical"/>
-  </LinearLayout>
+      <ProgressBar
+        android:id="@+id/progress_bar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="150dp"
+        android:visibility="gone"/>
+
+      <android.support.v7.widget.RecyclerView
+        android:id="@+id/recently_added_gems_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"/>
+    </LinearLayout>
+  </android.support.v4.widget.NestedScrollView>
 </layout>
