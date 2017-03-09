@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.Volley;
+import com.singhajit.rubygems.R;
 
 public class CustomBindings {
   @BindingAdapter({"adapter"})
@@ -35,6 +36,10 @@ public class CustomBindings {
 
   @BindingAdapter({"onRefresh"})
   public static void setOnRefresh(SwipeRefreshLayout view, SwipeRefreshLayout.OnRefreshListener listener) {
+    view.setColorSchemeColors(
+        view.getResources().getColor(R.color.colorPrimary),
+        view.getResources().getColor(R.color.colorPrimaryDark)
+    );
     view.setOnRefreshListener(listener);
   }
 }

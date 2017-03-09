@@ -31,6 +31,7 @@ public class NewGemsFragment extends Fragment implements GemsView {
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     binding = DataBindingUtil.inflate(inflater, R.layout.newgems_fragment, container, false);
     presenter = new NewGemsPresenter((APIClient) getActivity(), this);
+    binding.setPresenter(presenter);
     if (savedInstanceState != null) {
       render(savedInstanceState.<Gem>getParcelableArrayList(GEM_LIST));
     } else {
@@ -58,6 +59,7 @@ public class NewGemsFragment extends Fragment implements GemsView {
     this.gems = gems;
     GemListRenderer gemListRenderer = new GemListRenderer(gems, binding.recentlyAddedGemsList);
     gemListRenderer.render();
+    binding.refreshLayout.setRefreshing(false);
   }
 
   @Override

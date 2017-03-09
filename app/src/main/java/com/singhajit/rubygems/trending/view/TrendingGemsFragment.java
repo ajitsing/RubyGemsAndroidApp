@@ -33,7 +33,6 @@ public class TrendingGemsFragment extends Fragment implements GemsView {
     binding = DataBindingUtil.inflate(inflater, R.layout.trending_fragment, container, false);
     presenter = new TrendingPresenter((APIClient) getActivity(), this);
     binding.setPresenter(presenter);
-    setupRefreshLayout();
     if (savedInstanceState != null) {
       render(savedInstanceState.<Gem>getParcelableArrayList(GEM_LIST));
     } else {
@@ -77,12 +76,5 @@ public class TrendingGemsFragment extends Fragment implements GemsView {
   @Override
   public void notify(String message) {
     ((INotifier) getActivity()).notify(message);
-  }
-
-  private void setupRefreshLayout() {
-    binding.refreshLayout.setColorSchemeColors(
-        getResources().getColor(R.color.colorPrimary),
-        getResources().getColor(R.color.colorPrimaryDark)
-    );
   }
 }
