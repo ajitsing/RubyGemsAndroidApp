@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.singhajit.rubygems.R;
 import com.singhajit.rubygems.core.NetworkActivity;
 import com.singhajit.rubygems.databinding.GemSearchBinding;
-import com.singhajit.rubygems.gemlist.GemListFragment;
+import com.singhajit.rubygems.gemlist.GemListRenderer;
 import com.singhajit.rubygems.search.presenter.GemSearchPresenter;
 import com.singhajit.rubygems.search.viewmodel.GemSearchViewModel;
 import com.singhajit.rubygems.trending.model.Gem;
@@ -47,11 +47,8 @@ public class GemSearchActivity extends NetworkActivity implements GemSearchView 
 
   @Override
   public void renderResults(ArrayList<Gem> gems) {
-    GemListFragment fragment = new GemListFragment();
-    Bundle args = new Bundle();
-    args.putParcelableArrayList(GemListFragment.GEM_LIST, gems);
-    fragment.setArguments(args);
-    getSupportFragmentManager().beginTransaction().replace(R.id.gem_results, fragment).commit();
+    GemListRenderer gemListRenderer = new GemListRenderer(gems, binding.gemResults);
+    gemListRenderer.render();
   }
 
   @Override

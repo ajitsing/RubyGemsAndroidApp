@@ -13,7 +13,7 @@ import com.singhajit.rubygems.R;
 import com.singhajit.rubygems.core.APIClient;
 import com.singhajit.rubygems.core.INotifier;
 import com.singhajit.rubygems.databinding.TrendingBinding;
-import com.singhajit.rubygems.gemlist.GemListFragment;
+import com.singhajit.rubygems.gemlist.GemListRenderer;
 import com.singhajit.rubygems.trending.model.Gem;
 import com.singhajit.rubygems.trending.presenter.TrendingPresenter;
 
@@ -34,11 +34,8 @@ public class TrendingGemsFragment extends Fragment implements TrendingView {
 
   @Override
   public void render(ArrayList<Gem> gems) {
-    GemListFragment fragment = new GemListFragment();
-    Bundle args = new Bundle();
-    args.putParcelableArrayList(GemListFragment.GEM_LIST, gems);
-    fragment.setArguments(args);
-    getFragmentManager().beginTransaction().replace(R.id.gem_list_parent, fragment).commit();
+    GemListRenderer gemListRenderer = new GemListRenderer(gems, binding.recentlyUpdatedGemsList);
+    gemListRenderer.render();
   }
 
   @Override

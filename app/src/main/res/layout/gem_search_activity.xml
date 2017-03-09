@@ -44,10 +44,10 @@
           <EditText
             android:id="@+id/search"
             android:layout_width="240dp"
-            android:focusableInTouchMode="true"
-            android:focusable="true"
             android:layout_height="?attr/actionBarSize"
             android:background="@android:color/transparent"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:imeOptions="actionSearch"
             android:inputType="text"
             android:paddingEnd="20dp"
@@ -77,11 +77,12 @@
       android:layout_marginTop="150dp"
       android:visibility="@{viewModel.loaderVisibility.visibility}"/>
 
-    <FrameLayout
+    <android.support.v7.widget.RecyclerView
       android:id="@+id/gem_results"
-      android:layout_width="wrap_content"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginTop="10dp"
+      android:scrollbars="vertical"
       android:visibility="@{viewModel.gemsVisibility.visibility}"/>
 
   </LinearLayout>
