@@ -24,18 +24,27 @@ public class TrendingGemsFragment extends Fragment implements GemsView {
   public static final String GEM_LIST = "GEM_LIST";
   private TrendingBinding binding;
   private ArrayList<Gem> gems = new ArrayList<>();
+  private TrendingPresenter presenter;
 
   @Nullable
   @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     binding = DataBindingUtil.inflate(inflater, R.layout.trending_fragment, container, false);
-    TrendingPresenter presenter = new TrendingPresenter((APIClient) getActivity(), this);
+    presenter = new TrendingPresenter((APIClient) getActivity(), this);
     if (savedInstanceState != null) {
       render(savedInstanceState.<Gem>getParcelableArrayList(GEM_LIST));
     } else {
       presenter.render();
     }
     return binding.getRoot();
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+    if (gems.isEmpty()) {
+      presenter.render();
+    }
   }
 
   @Override

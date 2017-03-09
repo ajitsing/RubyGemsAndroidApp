@@ -24,12 +24,13 @@ import static com.singhajit.rubygems.trending.view.TrendingGemsFragment.GEM_LIST
 public class NewGemsFragment extends Fragment implements GemsView {
   private NewGemsBinding binding;
   private ArrayList<Gem> gems = new ArrayList<>();
+  private NewGemsPresenter presenter;
 
   @Nullable
   @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     binding = DataBindingUtil.inflate(inflater, R.layout.newgems_fragment, container, false);
-    NewGemsPresenter presenter = new NewGemsPresenter((APIClient) getActivity(), this);
+    presenter = new NewGemsPresenter((APIClient) getActivity(), this);
     if (savedInstanceState != null) {
       render(savedInstanceState.<Gem>getParcelableArrayList(GEM_LIST));
     } else {
@@ -42,6 +43,14 @@ public class NewGemsFragment extends Fragment implements GemsView {
   public void onSaveInstanceState(Bundle outState) {
     super.onSaveInstanceState(outState);
     outState.putParcelableArrayList(GEM_LIST, gems);
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+    if (gems.isEmpty()) {
+      presenter.render();
+    }
   }
 
   @Override
