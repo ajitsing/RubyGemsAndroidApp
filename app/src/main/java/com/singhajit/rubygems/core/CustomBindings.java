@@ -3,6 +3,7 @@ package com.singhajit.rubygems.core;
 import android.databinding.BindingAdapter;
 import android.graphics.Bitmap;
 import android.support.v4.util.LruCache;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -30,5 +31,10 @@ public class CustomBindings {
         return mCache.get(url);
       }
     }));
+  }
+
+  @BindingAdapter({"onRefresh"})
+  public static void setOnRefresh(SwipeRefreshLayout view, SwipeRefreshLayout.OnRefreshListener listener) {
+    view.setOnRefreshListener(listener);
   }
 }

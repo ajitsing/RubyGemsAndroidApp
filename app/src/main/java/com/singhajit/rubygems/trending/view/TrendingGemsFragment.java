@@ -14,6 +14,7 @@ import com.singhajit.rubygems.core.APIClient;
 import com.singhajit.rubygems.core.INotifier;
 import com.singhajit.rubygems.databinding.TrendingBinding;
 import com.singhajit.rubygems.gemlist.GemListRenderer;
+import com.singhajit.rubygems.newgems.presenter.GemsPresenter;
 import com.singhajit.rubygems.trending.model.Gem;
 import com.singhajit.rubygems.trending.presenter.TrendingPresenter;
 
@@ -24,13 +25,15 @@ public class TrendingGemsFragment extends Fragment implements GemsView {
   public static final String GEM_LIST = "GEM_LIST";
   private TrendingBinding binding;
   private ArrayList<Gem> gems = new ArrayList<>();
-  private TrendingPresenter presenter;
+  private GemsPresenter presenter;
 
   @Nullable
   @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     binding = DataBindingUtil.inflate(inflater, R.layout.trending_fragment, container, false);
     presenter = new TrendingPresenter((APIClient) getActivity(), this);
+    binding.setPresenter(presenter);
+    setupRefreshLayout();
     if (savedInstanceState != null) {
       render(savedInstanceState.<Gem>getParcelableArrayList(GEM_LIST));
     } else {
@@ -58,6 +61,7 @@ public class TrendingGemsFragment extends Fragment implements GemsView {
     this.gems = gems;
     GemListRenderer gemListRenderer = new GemListRenderer(this.gems, binding.recentlyUpdatedGemsList);
     gemListRenderer.render();
+    binding.refreshLayout.setRefreshing(false);
   }
 
   @Override
@@ -73,5 +77,12 @@ public class TrendingGemsFragment extends Fragment implements GemsView {
   @Override
   public void notify(String message) {
     ((INotifier) getActivity()).notify(message);
+  }
+
+  private void setupRefreshLayout() {
+    binding.refreshLayout.setColorSchemeColors(
+        getResources().getColor(R.color.colorPrimary),
+        getResources().getColor(R.color.colorPrimaryDark)
+    );
   }
 }

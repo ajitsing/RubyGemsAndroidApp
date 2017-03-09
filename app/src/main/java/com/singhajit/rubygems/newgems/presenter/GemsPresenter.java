@@ -24,6 +24,11 @@ public abstract class GemsPresenter {
     this.view = view;
   }
 
+  public void refresh() {
+    StringRequest request = new StringRequest(Request.Method.GET, getGemsUrl(), onSuccess(), onError());
+    apiClient.makeRequest(request);
+  }
+
   public void render() {
     StringRequest request = new StringRequest(Request.Method.GET, getGemsUrl(), onSuccess(), onError());
     view.showLoader();
