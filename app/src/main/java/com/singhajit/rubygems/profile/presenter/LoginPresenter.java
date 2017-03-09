@@ -49,6 +49,12 @@ public class LoginPresenter {
     }
   }
 
+  public void renderSavedState(ArrayList<Gem> gems, LoginViewModel loginViewModel) {
+    loginViewModel.setProfileCardVisibility(true);
+    loginViewModel.setLoginFormVisibility(false);
+    view.render(gems);
+  }
+
   private void getUserGems(final LoginViewModel viewModel) {
     UserGemsRequest userGemsRequest = new UserGemsRequest(sharedPrefRepo.get(API_KEY), new Response.Listener<String>() {
       @Override

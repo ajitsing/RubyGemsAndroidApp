@@ -22,11 +22,13 @@ import com.singhajit.rubygems.trending.model.Gem;
 import java.util.ArrayList;
 
 import static com.singhajit.rubygems.profile.presenter.LoginPresenter.USERNAME;
+import static com.singhajit.rubygems.trending.view.TrendingGemsFragment.GEM_LIST;
 
 public class UserProfileFragment extends Fragment implements ProfileView {
 
   private ProfileBinding binding;
   private SharedPrefRepo sharedPrefRepo;
+  private ArrayList<Gem> gems = new ArrayList<>();
 
   @Nullable
   @Override
@@ -37,8 +39,19 @@ public class UserProfileFragment extends Fragment implements ProfileView {
     sharedPrefRepo = new SharedPrefRepo(getActivity());
     LoginPresenter presenter = new LoginPresenter((APIClient) getActivity(), sharedPrefRepo, this);
     binding.setPresenter(presenter);
-    presenter.fetchUserGems(loginViewModel);
+
+    if (savedInstanceState != null && !savedInstanceState.<Gem>getParcelableArrayList(GEM_LIST).isEmpty()) {
+      presenter.renderSavedState(savedInstanceState.<Gem>getParcelableArrayList(GEM_LIST), loginViewModel);
+    } else {
+      presenter.fetchUserGems(loginViewModel);
+    }
     return binding.getRoot();
+  }
+
+  @Override
+  public void onSaveInstanceState(Bundle outState) {
+    super.onSaveInstanceState(outState);
+    outState.putParcelableArrayList(GEM_LIST, gems);
   }
 
   @Override
@@ -48,6 +61,7 @@ public class UserProfileFragment extends Fragment implements ProfileView {
 
   @Override
   public void render(ArrayList<Gem> gems) {
+    this.gems = gems;
     binding.setProfileViewModel(new ProfileViewModel(gems, sharedPrefRepo.get(USERNAME)));
     GemListRenderer gemListRenderer = new GemListRenderer(gems, binding.userGemsList);
     gemListRenderer.render();

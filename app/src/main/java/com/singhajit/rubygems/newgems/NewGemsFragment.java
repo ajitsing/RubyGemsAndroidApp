@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.singhajit.rubygems.R;
 import com.singhajit.rubygems.core.APIClient;
 import com.singhajit.rubygems.core.INotifier;
+import com.singhajit.rubygems.databinding.NewGemsBinding;
 import com.singhajit.rubygems.gemlist.GemListRenderer;
 import com.singhajit.rubygems.newgems.presenter.NewGemsPresenter;
 import com.singhajit.rubygems.trending.model.Gem;
@@ -18,20 +19,34 @@ import com.singhajit.rubygems.trending.view.GemsView;
 
 import java.util.ArrayList;
 
+import static com.singhajit.rubygems.trending.view.TrendingGemsFragment.GEM_LIST;
+
 public class NewGemsFragment extends Fragment implements GemsView {
   private NewGemsBinding binding;
+  private ArrayList<Gem> gems = new ArrayList<>();
 
   @Nullable
   @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     binding = DataBindingUtil.inflate(inflater, R.layout.newgems_fragment, container, false);
     NewGemsPresenter presenter = new NewGemsPresenter((APIClient) getActivity(), this);
-    presenter.render();
+    if (savedInstanceState != null) {
+      render(savedInstanceState.<Gem>getParcelableArrayList(GEM_LIST));
+    } else {
+      presenter.render();
+    }
     return binding.getRoot();
   }
 
   @Override
+  public void onSaveInstanceState(Bundle outState) {
+    super.onSaveInstanceState(outState);
+    outState.putParcelableArrayList(GEM_LIST, gems);
+  }
+
+  @Override
   public void render(ArrayList<Gem> gems) {
+    this.gems = gems;
     GemListRenderer gemListRenderer = new GemListRenderer(gems, binding.recentlyAddedGemsList);
     gemListRenderer.render();
   }

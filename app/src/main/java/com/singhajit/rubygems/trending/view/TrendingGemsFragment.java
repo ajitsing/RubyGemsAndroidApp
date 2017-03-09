@@ -21,20 +21,33 @@ import java.util.ArrayList;
 
 public class TrendingGemsFragment extends Fragment implements GemsView {
 
+  public static final String GEM_LIST = "GEM_LIST";
   private TrendingBinding binding;
+  private ArrayList<Gem> gems = new ArrayList<>();
 
   @Nullable
   @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     binding = DataBindingUtil.inflate(inflater, R.layout.trending_fragment, container, false);
     TrendingPresenter presenter = new TrendingPresenter((APIClient) getActivity(), this);
-    presenter.render();
+    if (savedInstanceState != null) {
+      render(savedInstanceState.<Gem>getParcelableArrayList(GEM_LIST));
+    } else {
+      presenter.render();
+    }
     return binding.getRoot();
   }
 
   @Override
+  public void onSaveInstanceState(Bundle outState) {
+    super.onSaveInstanceState(outState);
+    outState.putParcelableArrayList(GEM_LIST, gems);
+  }
+
+  @Override
   public void render(ArrayList<Gem> gems) {
-    GemListRenderer gemListRenderer = new GemListRenderer(gems, binding.recentlyUpdatedGemsList);
+    this.gems = gems;
+    GemListRenderer gemListRenderer = new GemListRenderer(this.gems, binding.recentlyUpdatedGemsList);
     gemListRenderer.render();
   }
 
