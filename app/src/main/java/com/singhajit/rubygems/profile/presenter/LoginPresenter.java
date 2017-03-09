@@ -49,6 +49,13 @@ public class LoginPresenter {
     }
   }
 
+  public void refresh(final LoginViewModel viewModel) {
+    final String apiKey = sharedPrefRepo.get(API_KEY);
+    if (apiKey != null) {
+      getUserGems(viewModel);
+    }
+  }
+
   public void renderSavedState(ArrayList<Gem> gems, LoginViewModel loginViewModel) {
     loginViewModel.setProfileCardVisibility(true);
     loginViewModel.setLoginFormVisibility(false);

@@ -65,5 +65,6 @@ public class UserProfileFragment extends Fragment implements ProfileView {
     binding.setProfileViewModel(new ProfileViewModel(gems, sharedPrefRepo.get(USERNAME)));
     GemListRenderer gemListRenderer = new GemListRenderer(gems, binding.userGemsList);
     gemListRenderer.render();
+    binding.refreshLayout.setRefreshing(false);
   }
 }
