@@ -1,7 +1,7 @@
 package com.singhajit.rubygems.core;
 
-import com.android.volley.toolbox.StringRequest;
+import com.singhajit.rubygems.network.BaseRequest;
 
 public interface APIClient {
-  void makeRequest(StringRequest request);
+  void makeRequest(BaseRequest request);
 }

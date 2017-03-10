@@ -6,6 +6,7 @@
 
   <application
     android:allowBackup="true"
+    android:name=".core.RubyGemsApplication"
     android:icon="@mipmap/rubygems_logo"
     android:label="@string/app_name"
     android:supportsRtl="true"
