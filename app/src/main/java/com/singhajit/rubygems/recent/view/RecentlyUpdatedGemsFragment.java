@@ -1,4 +1,4 @@
-package com.singhajit.rubygems.trending.view;
+package com.singhajit.rubygems.recent.view;
 
 
 import android.databinding.DataBindingUtil;
@@ -15,12 +15,12 @@ import com.singhajit.rubygems.core.ErrorHandler;
 import com.singhajit.rubygems.databinding.TrendingBinding;
 import com.singhajit.rubygems.gemlist.GemListRenderer;
 import com.singhajit.rubygems.newgems.presenter.GemsPresenter;
-import com.singhajit.rubygems.trending.model.Gem;
-import com.singhajit.rubygems.trending.presenter.TrendingPresenter;
+import com.singhajit.rubygems.recent.model.Gem;
+import com.singhajit.rubygems.recent.presenter.RecentlyUpdatedGemsPresenter;
 
 import java.util.ArrayList;
 
-public class TrendingGemsFragment extends Fragment implements GemsView {
+public class RecentlyUpdatedGemsFragment extends Fragment implements GemsView {
 
   public static final String GEM_LIST = "GEM_LIST";
   private TrendingBinding binding;
@@ -31,7 +31,7 @@ public class TrendingGemsFragment extends Fragment implements GemsView {
   @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     binding = DataBindingUtil.inflate(inflater, R.layout.trending_fragment, container, false);
-    presenter = new TrendingPresenter((APIClient) getActivity(), this);
+    presenter = new RecentlyUpdatedGemsPresenter((APIClient) getActivity(), this);
     binding.setPresenter(presenter);
     if (savedInstanceState != null) {
       render(savedInstanceState.<Gem>getParcelableArrayList(GEM_LIST));

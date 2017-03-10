@@ -8,9 +8,9 @@ import com.singhajit.rubygems.core.StringResolver;
 import com.singhajit.rubygems.core.ViewVisibility;
 import com.singhajit.rubygems.gemdetails.viewmodel.DependencyViewModel;
 import com.singhajit.rubygems.gemdetails.viewmodel.ExternalLinksViewModel;
-import com.singhajit.rubygems.trending.model.Dependencies;
-import com.singhajit.rubygems.trending.model.Dependency;
-import com.singhajit.rubygems.trending.model.Gem;
+import com.singhajit.rubygems.recent.model.Dependencies;
+import com.singhajit.rubygems.recent.model.Dependency;
+import com.singhajit.rubygems.recent.model.Gem;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;

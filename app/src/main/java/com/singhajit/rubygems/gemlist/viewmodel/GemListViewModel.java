@@ -5,7 +5,7 @@ import android.databinding.Bindable;
 import android.support.annotation.NonNull;
 
 import com.singhajit.rubygems.core.StringResolver;
-import com.singhajit.rubygems.trending.model.Gem;
+import com.singhajit.rubygems.recent.model.Gem;
 
 import java.util.ArrayList;
 import java.util.List;

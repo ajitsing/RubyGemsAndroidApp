@@ -9,7 +9,7 @@ import com.singhajit.rubygems.core.APIClient;
 import com.singhajit.rubygems.network.BaseRequest;
 import com.singhajit.rubygems.search.GemSearchView;
 import com.singhajit.rubygems.search.viewmodel.GemSearchViewModel;
-import com.singhajit.rubygems.trending.model.Gem;
+import com.singhajit.rubygems.recent.model.Gem;
 
 import java.util.ArrayList;
 

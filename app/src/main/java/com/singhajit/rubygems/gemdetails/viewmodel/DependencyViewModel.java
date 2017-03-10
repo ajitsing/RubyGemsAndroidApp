@@ -1,7 +1,7 @@
 package com.singhajit.rubygems.gemdetails.viewmodel;
 
 
-import com.singhajit.rubygems.trending.model.Dependency;
+import com.singhajit.rubygems.recent.model.Dependency;
 
 public class DependencyViewModel {
   private final Dependency dependency;

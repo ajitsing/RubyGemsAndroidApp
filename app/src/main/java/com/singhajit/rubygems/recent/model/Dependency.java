@@ -1,4 +1,4 @@
-package com.singhajit.rubygems.trending.model;
+package com.singhajit.rubygems.recent.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

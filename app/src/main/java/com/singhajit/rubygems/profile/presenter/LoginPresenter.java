@@ -13,7 +13,7 @@ import com.singhajit.rubygems.profile.model.RubyGemsAPIKey;
 import com.singhajit.rubygems.profile.request.LoginRequest;
 import com.singhajit.rubygems.profile.request.UserGemsRequest;
 import com.singhajit.rubygems.profile.viewmodel.LoginViewModel;
-import com.singhajit.rubygems.trending.model.Gem;
+import com.singhajit.rubygems.recent.model.Gem;
 
 import java.util.ArrayList;
 import java.util.Collections;

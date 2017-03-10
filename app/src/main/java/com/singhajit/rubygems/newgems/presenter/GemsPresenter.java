@@ -9,8 +9,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.singhajit.rubygems.core.APIClient;
 import com.singhajit.rubygems.network.BaseRequest;
-import com.singhajit.rubygems.trending.model.Gem;
-import com.singhajit.rubygems.trending.view.GemsView;
+import com.singhajit.rubygems.recent.model.Gem;
+import com.singhajit.rubygems.recent.view.GemsView;
 
 import java.util.ArrayList;
 import java.util.List;

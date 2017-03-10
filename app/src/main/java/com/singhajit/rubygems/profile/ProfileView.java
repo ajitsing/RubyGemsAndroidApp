@@ -1,6 +1,6 @@
 package com.singhajit.rubygems.profile;
 
-import com.singhajit.rubygems.trending.model.Gem;
+import com.singhajit.rubygems.recent.model.Gem;
 
 import java.util.ArrayList;
 

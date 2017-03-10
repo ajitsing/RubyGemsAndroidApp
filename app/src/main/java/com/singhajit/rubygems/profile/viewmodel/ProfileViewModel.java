@@ -1,6 +1,6 @@
 package com.singhajit.rubygems.profile.viewmodel;
 
-import com.singhajit.rubygems.trending.model.Gem;
+import com.singhajit.rubygems.recent.model.Gem;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;

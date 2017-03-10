@@ -1,7 +1,7 @@
-package com.singhajit.rubygems.trending.view;
+package com.singhajit.rubygems.recent.view;
 
 import com.singhajit.rubygems.core.INotifier;
-import com.singhajit.rubygems.trending.model.Gem;
+import com.singhajit.rubygems.recent.model.Gem;
 
 import java.util.ArrayList;
 

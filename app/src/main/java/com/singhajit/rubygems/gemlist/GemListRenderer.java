@@ -9,7 +9,7 @@ import com.singhajit.rubygems.core.StringResolver;
 import com.singhajit.rubygems.gemdetails.GemActivity;
 import com.singhajit.rubygems.gemlist.presenter.GemListPresenter;
 import com.singhajit.rubygems.gemlist.viewmodel.GemListViewModel;
-import com.singhajit.rubygems.trending.model.Gem;
+import com.singhajit.rubygems.recent.model.Gem;
 
 import java.util.List;
 

@@ -2,7 +2,7 @@ package com.singhajit.rubygems.gemdetails.viewmodel;
 
 
 import com.singhajit.rubygems.core.ViewVisibility;
-import com.singhajit.rubygems.trending.model.Gem;
+import com.singhajit.rubygems.recent.model.Gem;
 
 public class ExternalLinksViewModel {
   private final Gem gem;

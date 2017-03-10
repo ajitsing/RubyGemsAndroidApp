@@ -17,7 +17,7 @@ import com.singhajit.rubygems.databinding.GemSearchBinding;
 import com.singhajit.rubygems.gemlist.GemListRenderer;
 import com.singhajit.rubygems.search.presenter.GemSearchPresenter;
 import com.singhajit.rubygems.search.viewmodel.GemSearchViewModel;
-import com.singhajit.rubygems.trending.model.Gem;
+import com.singhajit.rubygems.recent.model.Gem;
 
 import java.util.ArrayList;
 

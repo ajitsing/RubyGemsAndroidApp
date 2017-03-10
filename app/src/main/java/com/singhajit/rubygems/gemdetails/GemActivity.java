@@ -12,7 +12,7 @@ import com.singhajit.rubygems.core.StringResolver;
 import com.singhajit.rubygems.databinding.GemBinding;
 import com.singhajit.rubygems.gemdetails.presenter.GemPresenter;
 import com.singhajit.rubygems.gemlist.viewmodel.GemViewModel;
-import com.singhajit.rubygems.trending.model.Gem;
+import com.singhajit.rubygems.recent.model.Gem;
 
 public class GemActivity extends BaseActivity implements ExternalLinkNavigator {
   public static final String GEM_EXTRA = "GEM_EXTRA";

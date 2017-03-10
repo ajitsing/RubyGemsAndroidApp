@@ -17,12 +17,12 @@ import com.singhajit.rubygems.gemlist.GemListRenderer;
 import com.singhajit.rubygems.profile.presenter.LoginPresenter;
 import com.singhajit.rubygems.profile.viewmodel.LoginViewModel;
 import com.singhajit.rubygems.profile.viewmodel.ProfileViewModel;
-import com.singhajit.rubygems.trending.model.Gem;
+import com.singhajit.rubygems.recent.model.Gem;
 
 import java.util.ArrayList;
 
 import static com.singhajit.rubygems.profile.presenter.LoginPresenter.USERNAME;
-import static com.singhajit.rubygems.trending.view.TrendingGemsFragment.GEM_LIST;
+import static com.singhajit.rubygems.recent.view.RecentlyUpdatedGemsFragment.GEM_LIST;
 
 public class UserProfileFragment extends Fragment implements ProfileView {
 

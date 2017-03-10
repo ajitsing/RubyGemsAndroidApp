@@ -14,12 +14,12 @@ import com.singhajit.rubygems.core.ErrorHandler;
 import com.singhajit.rubygems.databinding.NewGemsBinding;
 import com.singhajit.rubygems.gemlist.GemListRenderer;
 import com.singhajit.rubygems.newgems.presenter.NewGemsPresenter;
-import com.singhajit.rubygems.trending.model.Gem;
-import com.singhajit.rubygems.trending.view.GemsView;
+import com.singhajit.rubygems.recent.model.Gem;
+import com.singhajit.rubygems.recent.view.GemsView;
 
 import java.util.ArrayList;
 
-import static com.singhajit.rubygems.trending.view.TrendingGemsFragment.GEM_LIST;
+import static com.singhajit.rubygems.recent.view.RecentlyUpdatedGemsFragment.GEM_LIST;
 
 public class NewGemsFragment extends Fragment implements GemsView {
   private NewGemsBinding binding;

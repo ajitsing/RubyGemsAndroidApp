@@ -13,7 +13,7 @@ import com.singhajit.rubygems.core.NetworkActivity;
 import com.singhajit.rubygems.newgems.NewGemsFragment;
 import com.singhajit.rubygems.profile.UserProfileFragment;
 import com.singhajit.rubygems.search.GemSearchActivity;
-import com.singhajit.rubygems.trending.view.TrendingGemsFragment;
+import com.singhajit.rubygems.recent.view.RecentlyUpdatedGemsFragment;
 
 public class MainActivity extends NetworkActivity {
 
@@ -50,7 +50,7 @@ public class MainActivity extends NetworkActivity {
   private void setupViewPager(ViewPager viewPager) {
     ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
     adapter.addFragment(new ViewPagerFragment(new NewGemsFragment(), getString(R.string.new_gems)));
-    adapter.addFragment(new ViewPagerFragment(new TrendingGemsFragment(), getString(R.string.trending)));
+    adapter.addFragment(new ViewPagerFragment(new RecentlyUpdatedGemsFragment(), getString(R.string.recent)));
     adapter.addFragment(new ViewPagerFragment(new UserProfileFragment(), getString(R.string.profile)));
     viewPager.setAdapter(adapter);
   }
