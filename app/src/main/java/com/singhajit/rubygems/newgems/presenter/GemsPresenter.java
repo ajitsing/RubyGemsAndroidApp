@@ -5,10 +5,10 @@ import android.support.annotation.NonNull;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.singhajit.rubygems.core.APIClient;
+import com.singhajit.rubygems.network.BaseRequest;
 import com.singhajit.rubygems.trending.model.Gem;
 import com.singhajit.rubygems.trending.view.GemsView;
 
@@ -25,12 +25,12 @@ public abstract class GemsPresenter {
   }
 
   public void refresh() {
-    StringRequest request = new StringRequest(Request.Method.GET, getGemsUrl(), onSuccess(), onError());
+    BaseRequest request = new BaseRequest(Request.Method.GET, getGemsUrl(), onSuccess(), onError());
     apiClient.makeRequest(request);
   }
 
   public void render() {
-    StringRequest request = new StringRequest(Request.Method.GET, getGemsUrl(), onSuccess(), onError());
+    BaseRequest request = new BaseRequest(Request.Method.GET, getGemsUrl(), onSuccess(), onError());
     view.showLoader();
     apiClient.makeRequest(request);
   }

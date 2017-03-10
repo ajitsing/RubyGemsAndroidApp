@@ -4,7 +4,6 @@ import android.support.annotation.NonNull;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.singhajit.rubygems.core.APIClient;
@@ -35,7 +34,7 @@ public class LoginPresenter {
 
   public void login(final LoginViewModel viewModel) {
     viewModel.setLoaderVisibility(true);
-    StringRequest request = new LoginRequest(viewModel.getUsername(), viewModel.getPassword(), onSuccess(viewModel), onError(viewModel));
+    LoginRequest request = new LoginRequest(viewModel.getUsername(), viewModel.getPassword(), onSuccess(viewModel), onError(viewModel));
     viewModel.setLoginFormVisibility(false);
     apiClient.makeRequest(request);
   }

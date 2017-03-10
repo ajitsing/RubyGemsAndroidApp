@@ -5,14 +5,14 @@ import android.util.Log;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
-import com.android.volley.toolbox.StringRequest;
 import com.singhajit.rubygems.core.RubyGemsAPIs;
+import com.singhajit.rubygems.network.BaseRequest;
 
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LoginRequest extends StringRequest {
+public class LoginRequest extends BaseRequest {
   private final String username;
   private final String password;
 

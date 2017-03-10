@@ -3,10 +3,10 @@ package com.singhajit.rubygems.search.presenter;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.singhajit.rubygems.core.APIClient;
+import com.singhajit.rubygems.network.BaseRequest;
 import com.singhajit.rubygems.search.GemSearchView;
 import com.singhajit.rubygems.search.viewmodel.GemSearchViewModel;
 import com.singhajit.rubygems.trending.model.Gem;
@@ -27,7 +27,7 @@ public class GemSearchPresenter {
   public void onSearch(GemSearchViewModel viewModel) {
     viewModel.setGemsVisibility(false);
     viewModel.setLoaderVisibility(true);
-    apiClient.makeRequest(new StringRequest(Request.Method.GET, SEARCH_GEM.replace("%s", viewModel.getSearchString()), onSearchSuccess(viewModel), onFailure(viewModel)));
+    apiClient.makeRequest(new BaseRequest(Request.Method.GET, SEARCH_GEM.replace("%s", viewModel.getSearchString()), onSearchSuccess(viewModel), onFailure(viewModel)));
   }
 
   private Response.ErrorListener onFailure(final GemSearchViewModel viewModel) {
