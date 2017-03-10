@@ -18,4 +18,6 @@
   <string name="loading">Loading…</string>
   <string name="not_available">N/A</string>
   <string name="info">INFO</string>
+  <string name="generic_error_msg">Something bad happened!</string>
+  <string name="retry">Retry</string>
 </resources>

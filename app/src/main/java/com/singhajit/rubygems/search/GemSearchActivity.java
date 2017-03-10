@@ -4,13 +4,14 @@ import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.singhajit.rubygems.R;
+import com.singhajit.rubygems.core.ErrorHandler;
 import com.singhajit.rubygems.core.NetworkActivity;
 import com.singhajit.rubygems.databinding.GemSearchBinding;
 import com.singhajit.rubygems.gemlist.GemListRenderer;
@@ -53,7 +54,12 @@ public class GemSearchActivity extends NetworkActivity implements GemSearchView 
 
   @Override
   public void showError(String message) {
-    Snackbar.make(binding.getRoot(), message, Snackbar.LENGTH_LONG).show();
+    ErrorHandler.showSnackBar(binding.getRoot(), message, new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        presenter.onSearch(gemSearchViewModel);
+      }
+    });
   }
 
   private void bindSearchAction() {

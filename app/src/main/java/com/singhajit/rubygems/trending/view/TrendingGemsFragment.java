@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 import com.singhajit.rubygems.R;
 import com.singhajit.rubygems.core.APIClient;
-import com.singhajit.rubygems.core.INotifier;
+import com.singhajit.rubygems.core.ErrorHandler;
 import com.singhajit.rubygems.databinding.TrendingBinding;
 import com.singhajit.rubygems.gemlist.GemListRenderer;
 import com.singhajit.rubygems.newgems.presenter.GemsPresenter;
@@ -75,6 +75,11 @@ public class TrendingGemsFragment extends Fragment implements GemsView {
 
   @Override
   public void notify(String message) {
-    ((INotifier) getActivity()).notify(message);
+    ErrorHandler.showSnackBar(binding.getRoot(), message, new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        presenter.render();
+      }
+    });
   }
 }

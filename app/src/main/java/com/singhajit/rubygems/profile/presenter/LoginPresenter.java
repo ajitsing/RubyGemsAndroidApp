@@ -57,8 +57,8 @@ public class LoginPresenter {
   }
 
   public void renderSavedState(ArrayList<Gem> gems, LoginViewModel loginViewModel) {
-    loginViewModel.setProfileCardVisibility(true);
     loginViewModel.setLoginFormVisibility(false);
+    loginViewModel.setProfileCardVisibility(true);
     view.render(gems);
   }
 

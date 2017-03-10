@@ -3,7 +3,6 @@ package com.singhajit.rubygems.profile;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.singhajit.rubygems.R;
 import com.singhajit.rubygems.core.APIClient;
+import com.singhajit.rubygems.core.ErrorHandler;
 import com.singhajit.rubygems.core.SharedPrefRepo;
 import com.singhajit.rubygems.databinding.ProfileBinding;
 import com.singhajit.rubygems.gemlist.GemListRenderer;
@@ -29,15 +29,17 @@ public class UserProfileFragment extends Fragment implements ProfileView {
   private ProfileBinding binding;
   private SharedPrefRepo sharedPrefRepo;
   private ArrayList<Gem> gems = new ArrayList<>();
+  private LoginPresenter presenter;
+  private LoginViewModel loginViewModel;
 
   @Nullable
   @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     binding = DataBindingUtil.inflate(inflater, R.layout.profile_fragment, container, false);
-    LoginViewModel loginViewModel = new LoginViewModel();
+    loginViewModel = new LoginViewModel();
     binding.setLoginViewModel(loginViewModel);
     sharedPrefRepo = new SharedPrefRepo(getActivity());
-    LoginPresenter presenter = new LoginPresenter((APIClient) getActivity(), sharedPrefRepo, this);
+    presenter = new LoginPresenter((APIClient) getActivity(), sharedPrefRepo, this);
     binding.setPresenter(presenter);
 
     if (savedInstanceState != null && !savedInstanceState.<Gem>getParcelableArrayList(GEM_LIST).isEmpty()) {
@@ -56,7 +58,12 @@ public class UserProfileFragment extends Fragment implements ProfileView {
 
   @Override
   public void showError(String message) {
-    Snackbar.make(binding.getRoot(), message, Snackbar.LENGTH_LONG).show();
+    ErrorHandler.showSnackBar(binding.getRoot(), message, new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        presenter.fetchUserGems(loginViewModel);
+      }
+    });
   }
 
   @Override
