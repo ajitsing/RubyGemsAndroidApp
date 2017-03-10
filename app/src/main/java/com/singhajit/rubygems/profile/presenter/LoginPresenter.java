@@ -19,11 +19,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import static com.singhajit.rubygems.core.SharedPrefRepo.API_KEY;
+
 public class LoginPresenter {
   private final APIClient apiClient;
   private final SharedPrefRepo sharedPrefRepo;
   private final ProfileView view;
-  private final String API_KEY = "API_KEY";
   public static final String USERNAME = "USERNAME";
 
   public LoginPresenter(APIClient apiClient, SharedPrefRepo sharedPrefRepo, ProfileView view) {
@@ -46,6 +47,12 @@ public class LoginPresenter {
       viewModel.setLoaderVisibility(true);
       getUserGems(viewModel);
     }
+  }
+
+  public void logout(LoginViewModel viewModel) {
+    sharedPrefRepo.remove(API_KEY);
+    viewModel.setProfileCardVisibility(false);
+    viewModel.setLoginFormVisibility(true);
   }
 
   public void refresh(final LoginViewModel viewModel) {
