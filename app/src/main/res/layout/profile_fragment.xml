@@ -18,193 +18,147 @@
       type="com.singhajit.rubygems.profile.viewmodel.ProfileViewModel"/>
   </data>
 
-  <android.support.v4.widget.SwipeRefreshLayout
-    android:id="@+id/refresh_layout"
+  <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:onRefresh="@{() -> presenter.refresh(loginViewModel)}">
+    android:orientation="vertical">
 
-    <android.support.v4.widget.NestedScrollView
+    <ProgressBar
+      android:id="@+id/login_progress"
+      style="?android:attr/progressBarStyleLarge"
+      android:layout_gravity="center"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="8dp"
+      android:layout_marginTop="150dp"
+      android:visibility="@{loginViewModel.loaderVisibility.visibility}"/>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+      android:id="@+id/refresh_layout"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:background="@color/grey"
-      android:orientation="vertical">
+      android:visibility="@{loginViewModel.profileCardVisibility.visibility}"
+      app:onRefresh="@{() -> presenter.refresh(loginViewModel)}">
 
-      <LinearLayout
+      <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:paddingTop="@dimen/activity_vertical_margin">
-
-        <ProgressBar
-          android:id="@+id/login_progress"
-          style="?android:attr/progressBarStyleLarge"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginBottom="8dp"
-          android:layout_marginTop="150dp"
-          android:visibility="@{loginViewModel.loaderVisibility.visibility}"/>
+        android:background="@color/grey"
+        android:orientation="vertical">
 
         <LinearLayout
           android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:orientation="vertical">
-
-          <android.support.v7.widget.CardView
-            style="@style/GemCardViewStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginEnd="2dp"
-            android:layout_marginStart="2dp"
-            android:elevation="2dp"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:visibility="@{loginViewModel.profileCardVisibility.visibility}"
-            app:cardElevation="2dp">
-
-            <LinearLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="vertical">
-
-              <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.singhajit.rubygems.extensions.CircularImageView
-                  android:layout_width="70dp"
-                  android:layout_height="70dp"
-                  android:layout_marginStart="10dp"
-                  app:imageUrl="@{profileViewModel.profileImageUrl}"/>
-
-                <TextView
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:gravity="end"
-                  android:text="@{profileViewModel.username}"
-                  android:textColor="@color/colorAccent"
-                  android:textSize="30sp"
-                  tools:text="ajitsingh"/>
-              </LinearLayout>
-
-              <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:orientation="horizontal">
-
-                <TextView
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:paddingStart="10dp"
-                  android:text="@string/total_downloads"
-                  android:textColor="@color/cardview_dark_background"/>
-
-                <TextView
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:gravity="end"
-                  android:text="@{profileViewModel.totalDownloads}"
-                  android:textColor="@color/colorAccent"
-                  android:textStyle="bold"
-                  tools:text="20,000"/>
-              </LinearLayout>
-
-              <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
-
-                <TextView
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:paddingStart="10dp"
-                  android:text="@string/total_gems"
-                  android:textColor="@color/cardview_dark_background"/>
-
-                <TextView
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:gravity="end"
-                  android:text="@{profileViewModel.totalGems}"
-                  android:textColor="@color/colorAccent"
-                  android:textStyle="bold"
-                  tools:text="20"/>
-              </LinearLayout>
-            </LinearLayout>
-          </android.support.v7.widget.CardView>
-
-          <android.support.v7.widget.RecyclerView
-            android:id="@+id/user_gems_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="vertical"/>
-        </LinearLayout>
-
-        <LinearLayout
-          android:id="@+id/login_form"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginEnd="10dp"
-          android:layout_marginStart="10dp"
-          android:layout_marginTop="60dp"
+          android:layout_height="match_parent"
+          android:gravity="center_horizontal"
           android:orientation="vertical"
-          android:visibility="@{loginViewModel.loginFormVisibility.visibility}">
+          android:paddingBottom="@dimen/activity_vertical_margin"
+          android:paddingLeft="5dp"
+          android:paddingRight="5dp"
+          android:paddingTop="@dimen/activity_vertical_margin">
 
-          <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <AutoCompleteTextView
-              android:id="@+id/email"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:hint="@string/username"
-              android:inputType="text"
-              android:maxLines="1"
-              android:singleLine="true"
-              android:text="@={loginViewModel.username}"/>
-
-          </android.support.design.widget.TextInputLayout>
-
-          <android.support.design.widget.TextInputLayout
+          <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
+            android:orientation="vertical">
 
-            <EditText
-              android:id="@+id/password"
+            <android.support.v7.widget.CardView
+              style="@style/GemCardViewStyle"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:hint="@string/password"
-              android:imeActionId="@+id/login"
-              android:imeOptions="actionUnspecified"
-              android:inputType="textPassword"
-              android:maxLines="1"
-              android:singleLine="true"
-              android:text="@={loginViewModel.password}"/>
+              android:layout_marginBottom="5dp"
+              android:layout_marginEnd="2dp"
+              android:layout_marginStart="2dp"
+              android:elevation="2dp"
+              android:focusable="true"
+              android:focusableInTouchMode="true"
+              app:cardElevation="2dp">
 
-          </android.support.design.widget.TextInputLayout>
+              <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-          <Button
-            android:id="@+id/login_button"
-            style="?android:textAppearanceSmall"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:background="@color/colorPrimary"
-            android:onClick="@{() -> presenter.login(loginViewModel)}"
-            android:text="@string/login"
-            android:textColor="@color/white"
-            android:textStyle="bold"/>
+                <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+
+                  <com.singhajit.rubygems.extensions.CircularImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginStart="10dp"
+                    app:imageUrl="@{profileViewModel.profileImageUrl}"/>
+
+                  <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:text="@{profileViewModel.username}"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="30sp"
+                    tools:text="ajitsingh"/>
+                </LinearLayout>
+
+                <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="20dp"
+                  android:orientation="horizontal">
+
+                  <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="10dp"
+                    android:text="@string/total_downloads"
+                    android:textColor="@color/cardview_dark_background"/>
+
+                  <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:text="@{profileViewModel.totalDownloads}"
+                    android:textColor="@color/colorAccent"
+                    android:textStyle="bold"
+                    tools:text="20,000"/>
+                </LinearLayout>
+
+                <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="10dp"
+                  android:orientation="horizontal">
+
+                  <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="10dp"
+                    android:text="@string/total_gems"
+                    android:textColor="@color/cardview_dark_background"/>
+
+                  <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:text="@{profileViewModel.totalGems}"
+                    android:textColor="@color/colorAccent"
+                    android:textStyle="bold"
+                    tools:text="20"/>
+                </LinearLayout>
+              </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.RecyclerView
+              android:id="@+id/user_gems_list"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:scrollbars="vertical"/>
+          </LinearLayout>
         </LinearLayout>
-      </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
-  </android.support.v4.widget.SwipeRefreshLayout>
+      </android.support.v4.widget.NestedScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <include
+      layout="@layout/login_form"
+      app:loginViewModel="@{loginViewModel}"
+      app:presenter="@{presenter}"/>
+  </LinearLayout>
 </layout>

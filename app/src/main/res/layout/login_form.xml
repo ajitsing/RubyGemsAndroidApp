@@ -1,0 +1,72 @@
+<layout
+  xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <data>
+
+    <variable
+      name="presenter"
+      type="com.singhajit.rubygems.profile.presenter.LoginPresenter"/>
+
+    <variable
+      name="loginViewModel"
+      type="com.singhajit.rubygems.profile.viewmodel.LoginViewModel"/>
+  </data>
+
+  <LinearLayout
+    android:id="@+id/login_form"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="10dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="60dp"
+    android:orientation="vertical"
+    android:visibility="@{loginViewModel.loginFormVisibility.visibility}">
+
+    <android.support.design.widget.TextInputLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+      <AutoCompleteTextView
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/username"
+        android:inputType="text"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:text="@={loginViewModel.username}"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="20dp">
+
+      <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/password"
+        android:imeActionId="@+id/login"
+        android:imeOptions="actionUnspecified"
+        android:inputType="textPassword"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:text="@={loginViewModel.password}"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+      android:id="@+id/login_button"
+      style="?android:textAppearanceSmall"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="30dp"
+      android:background="@color/colorPrimary"
+      android:onClick="@{() -> presenter.login(loginViewModel)}"
+      android:text="@string/login"
+      android:textColor="@color/white"
+      android:textStyle="bold"/>
+  </LinearLayout>
+</layout>
