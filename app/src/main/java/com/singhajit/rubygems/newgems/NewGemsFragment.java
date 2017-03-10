@@ -74,6 +74,7 @@ public class NewGemsFragment extends Fragment implements GemsView {
 
   @Override
   public void notify(String message) {
+    binding.refreshLayout.setRefreshing(false);
     ErrorHandler.showSnackBar(binding.getRoot(), message, new View.OnClickListener() {
       @Override
       public void onClick(View view) {

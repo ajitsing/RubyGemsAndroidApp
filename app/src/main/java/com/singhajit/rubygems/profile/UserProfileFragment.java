@@ -58,6 +58,7 @@ public class UserProfileFragment extends Fragment implements ProfileView {
 
   @Override
   public void showError(String message) {
+    binding.refreshLayout.setRefreshing(false);
     ErrorHandler.showSnackBar(binding.getRoot(), message, new View.OnClickListener() {
       @Override
       public void onClick(View view) {
