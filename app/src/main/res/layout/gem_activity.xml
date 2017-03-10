@@ -46,20 +46,22 @@
       <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp"
         android:orientation="vertical">
 
         <android.support.v7.widget.CardView
+          style="@style/GemCardViewStyle"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_marginBottom="10dp"
+          android:layout_marginBottom="5dp"
           android:layout_marginTop="10dp"
-          android:elevation="10dp"
-          app:cardElevation="5dp">
+          android:elevation="2dp"
+          app:cardElevation="2dp">
 
           <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
             android:layout_marginTop="10dp"
             android:orientation="vertical">
 
@@ -75,7 +77,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_weight="1"
                 android:text="@{viewModel.name}"
-                android:textColor="@color/cardview_dark_background"
+                android:textColor="@color/colorAccent"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 tools:text="apkToJava"/>
@@ -149,10 +151,13 @@
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
+          style="@style/GemCardViewStyle"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_marginBottom="10dp"
-          android:visibility="@{viewModel.authorsVisibility.visibility}">
+          android:layout_marginBottom="5dp"
+          android:elevation="2dp"
+          android:visibility="@{viewModel.authorsVisibility.visibility}"
+          app:cardElevation="2dp">
 
           <LinearLayout
             android:layout_width="match_parent"
@@ -164,7 +169,7 @@
               android:layout_height="wrap_content"
               android:layout_margin="10dp"
               android:text="@string/authors"
-              android:textColor="@color/cardview_dark_background"
+              android:textColor="@color/colorAccent"
               android:textSize="15sp"
               android:textStyle="bold"/>
 
@@ -186,9 +191,11 @@
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
+          style="@style/GemCardViewStyle"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:elevation="5dp">
+          android:elevation="2dp"
+          app:cardElevation="2dp">
 
           <LinearLayout
             android:layout_width="match_parent"
@@ -200,7 +207,7 @@
               android:layout_height="wrap_content"
               android:layout_margin="10dp"
               android:text="@string/license"
-              android:textColor="@color/cardview_dark_background"
+              android:textColor="@color/colorAccent"
               android:textSize="15sp"
               android:textStyle="bold"/>
 
@@ -222,11 +229,13 @@
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
+          style="@style/GemCardViewStyle"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_marginBottom="10dp"
-          android:layout_marginTop="10dp"
-          android:elevation="5dp">
+          android:layout_marginBottom="5dp"
+          android:layout_marginTop="5dp"
+          android:elevation="2dp"
+          app:cardElevation="2dp">
 
           <LinearLayout
             android:layout_width="match_parent"
@@ -238,7 +247,7 @@
               android:layout_height="wrap_content"
               android:layout_margin="10dp"
               android:text="@string/info"
-              android:textColor="@color/cardview_dark_background"
+              android:textColor="@color/colorAccent"
               android:textSize="15sp"
               android:textStyle="bold"/>
 
@@ -260,11 +269,13 @@
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
+          style="@style/GemCardViewStyle"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_marginBottom="10dp"
-          android:elevation="5dp"
-          android:visibility="@{viewModel.runtimeDependencyVisibility.visibility}">
+          android:layout_marginBottom="5dp"
+          android:elevation="2dp"
+          android:visibility="@{viewModel.runtimeDependencyVisibility.visibility}"
+          app:cardElevation="2dp">
 
           <LinearLayout
             android:layout_width="match_parent"
@@ -279,7 +290,7 @@
               android:layout_marginBottom="10dp"
               android:layout_marginTop="10dp"
               android:text="@{viewModel.runtimeDependenciesText}"
-              android:textColor="@color/cardview_dark_background"
+              android:textColor="@color/colorAccent"
               android:textSize="15sp"
               android:textStyle="bold"
               tools:text="Runtime Dependencies: 3"/>
@@ -292,17 +303,20 @@
               <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 app:adapter="@{DependencyAdapter.newInstance(viewModel.runtimeDependencyViewModels)}"/>
             </android.support.v7.widget.CardView>
           </LinearLayout>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
+          style="@style/GemCardViewStyle"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_marginBottom="10dp"
-          android:elevation="5dp"
-          android:visibility="@{viewModel.developmentDependencyVisibility.visibility}">
+          android:layout_marginBottom="5dp"
+          android:elevation="2dp"
+          android:visibility="@{viewModel.developmentDependencyVisibility.visibility}"
+          app:cardElevation="2dp">
 
           <LinearLayout
             android:layout_width="match_parent"
@@ -317,7 +331,7 @@
               android:layout_marginBottom="10dp"
               android:layout_marginTop="10dp"
               android:text="@{viewModel.developmentDependenciesText}"
-              android:textColor="@color/cardview_dark_background"
+              android:textColor="@color/colorAccent"
               android:textSize="15sp"
               android:textStyle="bold"
               tools:text="Development Dependencies: 3"/>
@@ -330,6 +344,7 @@
               <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 app:adapter="@{DependencyAdapter.newInstance(viewModel.developmentDependencyViewModels)}"/>
             </android.support.v7.widget.CardView>
           </LinearLayout>
