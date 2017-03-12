@@ -2,31 +2,32 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
   <data class="TrendingBinding">
+
     <variable
       name="presenter"
       type="com.singhajit.rubygems.newgems.presenter.GemsPresenter"/>
   </data>
 
   <android.support.v4.widget.SwipeRefreshLayout
-    android:focusableInTouchMode="true"
-    android:focusable="true"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/refresh_layout"
-    app:onRefresh="@{() -> presenter.refresh()}"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@color/grey"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:onRefresh="@{() -> presenter.refresh()}">
 
     <android.support.v4.widget.NestedScrollView
       android:id="@+id/gem_list_container"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:background="@color/grey"
       android:clipToPadding="false"
-      android:orientation="vertical"
-      android:paddingBottom="@dimen/activity_vertical_margin"
-      android:paddingLeft="5dp"
-      android:paddingRight="5dp"
-      android:paddingTop="@dimen/activity_vertical_margin">
+      android:orientation="vertical">
 
       <LinearLayout
         android:layout_width="match_parent"
