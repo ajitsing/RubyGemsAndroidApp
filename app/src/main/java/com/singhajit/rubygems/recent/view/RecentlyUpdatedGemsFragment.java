@@ -64,6 +64,11 @@ public class RecentlyUpdatedGemsFragment extends Fragment implements GemsView {
   }
 
   @Override
+  public void showPullToRefreshLoader() {
+    binding.refreshLayout.setRefreshing(true);
+  }
+
+  @Override
   public void showLoader() {
     binding.progressBar.setVisibility(View.VISIBLE);
   }

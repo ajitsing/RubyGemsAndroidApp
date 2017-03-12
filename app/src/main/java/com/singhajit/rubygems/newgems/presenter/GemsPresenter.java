@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.singhajit.rubygems.core.APIClient;
 import com.singhajit.rubygems.network.BaseRequest;
+import com.singhajit.rubygems.network.CachedRequest;
 import com.singhajit.rubygems.recent.model.Gem;
 import com.singhajit.rubygems.recent.view.GemsView;
 
@@ -25,12 +26,13 @@ public abstract class GemsPresenter {
   }
 
   public void refresh() {
-    BaseRequest request = new BaseRequest(Request.Method.GET, getGemsUrl(), onSuccess(), onError());
+    BaseRequest request = new BaseRequest(Request.Method.GET, getGemsUrl(), onResponse(), onError());
+    request.setShouldCache(false);
     apiClient.makeRequest(request);
   }
 
   public void render() {
-    BaseRequest request = new BaseRequest(Request.Method.GET, getGemsUrl(), onSuccess(), onError());
+    CachedRequest request = new CachedRequest(Request.Method.GET, getGemsUrl(), onCachedResponse(), onError());
     view.showLoader();
     apiClient.makeRequest(request);
   }
@@ -50,7 +52,7 @@ public abstract class GemsPresenter {
   }
 
   @NonNull
-  private Response.Listener<String> onSuccess() {
+  private Response.Listener<String> onResponse() {
     return new Response.Listener<String>() {
       @Override
       public void onResponse(String response) {
@@ -58,6 +60,18 @@ public abstract class GemsPresenter {
         }.getType());
         view.hideLoader();
         view.render(gems);
+      }
+    };
+  }
+
+  @NonNull
+  private Response.Listener<String> onCachedResponse() {
+    return new Response.Listener<String>() {
+      @Override
+      public void onResponse(String response) {
+        GemsPresenter.this.onResponse().onResponse(response);
+        view.showPullToRefreshLoader();
+        refresh();
       }
     };
   }

@@ -10,5 +10,7 @@ public interface GemsView extends INotifier {
 
   void showLoader();
 
+  void showPullToRefreshLoader();
+
   void hideLoader();
 }
