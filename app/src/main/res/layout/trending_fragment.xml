@@ -8,6 +8,8 @@
   </data>
 
   <android.support.v4.widget.SwipeRefreshLayout
+    android:focusableInTouchMode="true"
+    android:focusable="true"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/refresh_layout"
     app:onRefresh="@{() -> presenter.refresh()}"
