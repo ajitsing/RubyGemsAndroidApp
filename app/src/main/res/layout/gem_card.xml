@@ -81,6 +81,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
+            android:ellipsize="end"
+            android:maxLines="3"
             android:layout_weight="1"
             android:text="@{viewModel.info}"
             android:textColor="@color/cardview_dark_background"
