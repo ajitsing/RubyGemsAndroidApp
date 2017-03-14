@@ -69,10 +69,16 @@ public class UserProfileFragment extends Fragment implements ProfileView {
 
   @Override
   public void render(ArrayList<Gem> gems) {
+    boolean isRefresh = !this.gems.isEmpty();
     this.gems = gems;
     binding.setProfileViewModel(new ProfileViewModel(gems, sharedPrefRepo.get(USERNAME)));
     GemListRenderer gemListRenderer = new GemListRenderer(gems, binding.userGemsList);
-    gemListRenderer.render(false);
+    gemListRenderer.render(isRefresh);
     binding.refreshLayout.setRefreshing(false);
+  }
+
+  @Override
+  public void showPullToRefreshLoader() {
+    binding.refreshLayout.setRefreshing(true);
   }
 }

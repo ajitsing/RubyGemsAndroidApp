@@ -8,8 +8,10 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.singhajit.rubygems.core.APIClient;
 import com.singhajit.rubygems.core.SharedPrefRepo;
+import com.singhajit.rubygems.network.BaseRequest;
 import com.singhajit.rubygems.profile.ProfileView;
 import com.singhajit.rubygems.profile.model.RubyGemsAPIKey;
+import com.singhajit.rubygems.profile.request.CachedUserGemsRequest;
 import com.singhajit.rubygems.profile.request.LoginRequest;
 import com.singhajit.rubygems.profile.request.UserGemsRequest;
 import com.singhajit.rubygems.profile.viewmodel.LoginViewModel;
@@ -35,7 +37,7 @@ public class LoginPresenter {
 
   public void login(final LoginViewModel viewModel) {
     viewModel.setLoaderVisibility(true);
-    LoginRequest request = new LoginRequest(viewModel.getUsername(), viewModel.getPassword(), onSuccess(viewModel), onError(viewModel));
+    LoginRequest request = new LoginRequest(viewModel.getUsername(), viewModel.getPassword(), onSuccessFullLogin(viewModel), onLoginError(viewModel));
     viewModel.setLoginFormVisibility(false);
     apiClient.makeRequest(request);
   }
@@ -45,7 +47,7 @@ public class LoginPresenter {
     if (apiKey != null) {
       viewModel.setLoginFormVisibility(false);
       viewModel.setLoaderVisibility(true);
-      getUserGems(viewModel);
+      getUserGems(viewModel, true);
     }
   }
 
@@ -58,7 +60,8 @@ public class LoginPresenter {
   public void refresh(final LoginViewModel viewModel) {
     final String apiKey = sharedPrefRepo.get(API_KEY);
     if (apiKey != null) {
-      getUserGems(viewModel);
+      view.showPullToRefreshLoader();
+      getUserGems(viewModel, false);
     }
   }
 
@@ -68,8 +71,19 @@ public class LoginPresenter {
     view.render(gems);
   }
 
-  private void getUserGems(final LoginViewModel viewModel) {
-    UserGemsRequest userGemsRequest = new UserGemsRequest(sharedPrefRepo.get(API_KEY), new Response.Listener<String>() {
+  private void getUserGems(final LoginViewModel viewModel, boolean enableCache) {
+    BaseRequest request;
+    if (enableCache) {
+      request = new CachedUserGemsRequest(sharedPrefRepo.get(API_KEY), onCachedUserGemsSuccess(viewModel), onUserGemsFetchError(viewModel));
+    } else {
+      request = new UserGemsRequest(sharedPrefRepo.get(API_KEY), onUserGemsFetchSuccess(viewModel), onUserGemsFetchError(viewModel));
+    }
+    apiClient.makeRequest(request);
+  }
+
+  @NonNull
+  private Response.Listener<String> onUserGemsFetchSuccess(final LoginViewModel viewModel) {
+    return new Response.Listener<String>() {
       @Override
       public void onResponse(String response) {
         ArrayList<Gem> gems = new Gson().fromJson(response, new TypeToken<ArrayList<Gem>>() {
@@ -78,8 +92,18 @@ public class LoginPresenter {
         viewModel.setLoaderVisibility(false);
         viewModel.setProfileCardVisibility(true);
       }
-    }, onError(viewModel));
-    apiClient.makeRequest(userGemsRequest);
+    };
+  }
+
+  @NonNull
+  private Response.Listener<String> onCachedUserGemsSuccess(final LoginViewModel viewModel) {
+    return new Response.Listener<String>() {
+      @Override
+      public void onResponse(String response) {
+        onUserGemsFetchSuccess(viewModel).onResponse(response);
+        refresh(viewModel);
+      }
+    };
   }
 
   private ArrayList<Gem> sortGems(ArrayList<Gem> gems) {
@@ -93,25 +117,36 @@ public class LoginPresenter {
   }
 
   @NonNull
-  private Response.Listener<String> onSuccess(final LoginViewModel viewModel) {
+  private Response.Listener<String> onSuccessFullLogin(final LoginViewModel viewModel) {
     return new Response.Listener<String>() {
       @Override
       public void onResponse(String response) {
         RubyGemsAPIKey rubyGemsAPIKey = new Gson().fromJson(response, RubyGemsAPIKey.class);
         sharedPrefRepo.put(API_KEY, rubyGemsAPIKey.getKey());
         sharedPrefRepo.put(USERNAME, viewModel.getUsername());
-        getUserGems(viewModel);
+        getUserGems(viewModel, true);
       }
     };
   }
 
   @NonNull
-  private Response.ErrorListener onError(final LoginViewModel viewModel) {
+  private Response.ErrorListener onLoginError(final LoginViewModel viewModel) {
     return new Response.ErrorListener() {
       @Override
       public void onErrorResponse(VolleyError error) {
         viewModel.setLoaderVisibility(false);
         viewModel.setLoginFormVisibility(true);
+        view.showError(error.getMessage());
+      }
+    };
+  }
+
+  @NonNull
+  private Response.ErrorListener onUserGemsFetchError(final LoginViewModel viewModel) {
+    return new Response.ErrorListener() {
+      @Override
+      public void onErrorResponse(VolleyError error) {
+        viewModel.setLoaderVisibility(false);
         view.showError(error.getMessage());
       }
     };

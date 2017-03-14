@@ -8,4 +8,6 @@ public interface ProfileView {
   void showError(String message);
 
   void render(ArrayList<Gem> gems);
+
+  void showPullToRefreshLoader();
 }
