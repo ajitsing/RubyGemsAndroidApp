@@ -12,8 +12,8 @@ import com.singhajit.rubygems.R;
 import com.singhajit.rubygems.core.NetworkActivity;
 import com.singhajit.rubygems.newgems.NewGemsFragment;
 import com.singhajit.rubygems.profile.UserProfileFragment;
-import com.singhajit.rubygems.search.GemSearchActivity;
 import com.singhajit.rubygems.recent.view.RecentlyUpdatedGemsFragment;
+import com.singhajit.rubygems.search.GemSearchActivity;
 
 public class MainActivity extends NetworkActivity {
 
@@ -52,6 +52,7 @@ public class MainActivity extends NetworkActivity {
     adapter.addFragment(new ViewPagerFragment(new NewGemsFragment(), getString(R.string.new_gems)));
     adapter.addFragment(new ViewPagerFragment(new RecentlyUpdatedGemsFragment(), getString(R.string.recent)));
     adapter.addFragment(new ViewPagerFragment(new UserProfileFragment(), getString(R.string.profile)));
+    viewPager.setOffscreenPageLimit(3);
     viewPager.setAdapter(adapter);
   }
 }
