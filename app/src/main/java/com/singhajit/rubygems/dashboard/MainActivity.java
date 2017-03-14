@@ -50,7 +50,7 @@ public class MainActivity extends NetworkActivity {
   private void setupViewPager(ViewPager viewPager) {
     ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
     adapter.addFragment(new ViewPagerFragment(new NewGemsFragment(), getString(R.string.new_gems)));
-    adapter.addFragment(new ViewPagerFragment(new RecentlyUpdatedGemsFragment(), getString(R.string.recent)));
+    adapter.addFragment(new ViewPagerFragment(new RecentlyUpdatedGemsFragment(), getString(R.string.updates)));
     adapter.addFragment(new ViewPagerFragment(new UserProfileFragment(), getString(R.string.profile)));
     viewPager.setOffscreenPageLimit(3);
     viewPager.setAdapter(adapter);
