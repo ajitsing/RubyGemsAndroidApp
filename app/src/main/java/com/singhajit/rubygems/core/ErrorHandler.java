@@ -11,7 +11,7 @@ public class ErrorHandler {
     if (rootView != null) {
       Context context = rootView.getContext();
       String msg = message == null || message.isEmpty() ? context.getString(R.string.generic_error_msg) : message;
-      Snackbar.make(rootView, msg, Snackbar.LENGTH_LONG).setAction(context.getString(R.string.retry), listener).show();
+      Snackbar.make(rootView, msg, Snackbar.LENGTH_INDEFINITE).setAction(context.getString(R.string.retry), listener).show();
     }
   }
 }
