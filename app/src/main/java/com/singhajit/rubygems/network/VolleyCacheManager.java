@@ -7,7 +7,8 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import java.util.Map;
 
 public class VolleyCacheManager {
-  private final static int HOUR = 60 * 60 * 1000;
+  private final static long HOUR = 60 * 60 * 1000;
+  private final static long A_DAY = 24 * HOUR;
 
   public Cache.Entry getCacheEntry(NetworkResponse response) {
     long now = System.currentTimeMillis();
@@ -45,6 +46,6 @@ public class VolleyCacheManager {
   }
 
   public long getCacheExpiryTime() {
-    return 24 * HOUR;
+    return A_DAY * 365;
   }
 }
