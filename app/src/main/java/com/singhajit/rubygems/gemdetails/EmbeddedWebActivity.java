@@ -13,10 +13,12 @@ import android.webkit.WebViewClient;
 import com.singhajit.rubygems.R;
 import com.singhajit.rubygems.core.BaseActivity;
 import com.singhajit.rubygems.databinding.EmbeddedWebBinding;
+import com.singhajit.rubygems.gemdetails.viewmodel.EmbeddedWebViewModel;
 
 public class EmbeddedWebActivity extends BaseActivity {
   public final static String LINK_EXTRA = "LINK";
   private EmbeddedWebBinding binding;
+  private WebView webView;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -28,9 +30,9 @@ public class EmbeddedWebActivity extends BaseActivity {
 
     getSupportActionBar().setHomeButtonEnabled(true);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    setTitle(link);
+    binding.setViewModel(new EmbeddedWebViewModel(link));
 
-    final WebView webView = binding.webView;
+    this.webView = binding.webView;
     webView.getSettings().setJavaScriptEnabled(true);
 
     webView.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
@@ -41,6 +43,15 @@ public class EmbeddedWebActivity extends BaseActivity {
 
     webView.setWebViewClient(getClient(link));
     webView.loadUrl(link);
+  }
+
+  @Override
+  public void onBackPressed() {
+    if (webView.canGoBack()) {
+      webView.goBack();
+    } else {
+      super.onBackPressed();
+    }
   }
 
   @NonNull
