@@ -21,4 +21,6 @@
   <string name="generic_error_msg">Something bad happened!</string>
   <string name="retry">Retry</string>
   <string name="logout">LOGOUT</string>
+  <string name="share_dialog_message">Share gem using</string>
+  <string name="copied_gem_details_msg">Copied gem details to clipboard!</string>
 </resources>
