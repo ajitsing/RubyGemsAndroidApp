@@ -56,9 +56,10 @@ public class NewGemsFragment extends Fragment implements GemsView {
 
   @Override
   public void render(ArrayList<Gem> gems) {
+    boolean isRefresh = !this.gems.isEmpty();
     this.gems = gems;
     GemListRenderer gemListRenderer = new GemListRenderer(gems, binding.recentlyAddedGemsList);
-    gemListRenderer.render();
+    gemListRenderer.render(isRefresh);
     binding.refreshLayout.setRefreshing(false);
   }
 

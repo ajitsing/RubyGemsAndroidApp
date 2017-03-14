@@ -57,9 +57,10 @@ public class RecentlyUpdatedGemsFragment extends Fragment implements GemsView {
 
   @Override
   public void render(ArrayList<Gem> gems) {
+    boolean isRefresh = !this.gems.isEmpty();
     this.gems = gems;
     GemListRenderer gemListRenderer = new GemListRenderer(this.gems, binding.recentlyUpdatedGemsList);
-    gemListRenderer.render();
+    gemListRenderer.render(isRefresh);
     binding.refreshLayout.setRefreshing(false);
   }
 

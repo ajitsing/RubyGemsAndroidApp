@@ -49,7 +49,7 @@ public class GemSearchActivity extends NetworkActivity implements GemSearchView 
   @Override
   public void renderResults(ArrayList<Gem> gems) {
     GemListRenderer gemListRenderer = new GemListRenderer(gems, binding.gemResults);
-    gemListRenderer.render();
+    gemListRenderer.render(true);
   }
 
   @Override

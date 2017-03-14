@@ -72,7 +72,7 @@ public class UserProfileFragment extends Fragment implements ProfileView {
     this.gems = gems;
     binding.setProfileViewModel(new ProfileViewModel(gems, sharedPrefRepo.get(USERNAME)));
     GemListRenderer gemListRenderer = new GemListRenderer(gems, binding.userGemsList);
-    gemListRenderer.render();
+    gemListRenderer.render(false);
     binding.refreshLayout.setRefreshing(false);
   }
 }

@@ -13,6 +13,8 @@ import com.singhajit.rubygems.recent.model.Gem;
 
 import java.util.List;
 
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
+
 import static com.singhajit.rubygems.gemdetails.GemActivity.GEM_EXTRA;
 
 public class GemListRenderer implements GemListAction {
@@ -24,10 +26,10 @@ public class GemListRenderer implements GemListAction {
     this.view = view;
   }
 
-  public void render() {
+  public void render(boolean disableAnimation) {
     GemListPresenter presenter = new GemListPresenter(this);
     GemAdapter adapter = new GemAdapter(new GemListViewModel(gems, new StringResolver(view.getContext())), presenter);
-    view.setAdapter(adapter);
+    view.setAdapter(disableAnimation ? adapter : new ScaleInAnimationAdapter(adapter));
     view.setLayoutManager(new LinearLayoutManager(view.getContext()));
     view.setNestedScrollingEnabled(false);
   }
