@@ -24,6 +24,7 @@
       android:windowSoftInputMode="stateVisible"/>
     <activity android:name=".gemdetails.GemActivity"/>
     <activity android:name=".gemdetails.EmbeddedWebActivity"/>
+    <activity android:name=".helpandfeedback.HelpAndFeedbackActivity"/>
   </application>
 
 </manifest>

@@ -6,4 +6,7 @@
     android:icon="@mipmap/ic_search_white"
     android:title="@string/search"
     app:showAsAction="always"/>
+  <item
+    android:id="@+id/help_and_feedback"
+    android:title="@string/help_and_feedback"/>
 </menu>
