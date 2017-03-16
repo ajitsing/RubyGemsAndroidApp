@@ -2,7 +2,16 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
-  <data class="HelpAndFeedbackBinding"/>
+  <data class="HelpAndFeedbackBinding">
+
+    <variable
+      name="viewModel"
+      type="com.singhajit.rubygems.helpandfeedback.viewmodel.HelpAndFeedbackViewModel"/>
+
+    <variable
+      name="presenter"
+      type="com.singhajit.rubygems.helpandfeedback.presenter.HelpAndFeedbackPresenter"/>
+  </data>
 
 
   <LinearLayout
@@ -84,8 +93,9 @@
             app:contentPaddingBottom="5dp">
 
             <LinearLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:onClick="@{() -> presenter.navigateToWebsite(context.getString(viewModel.githubLink))}">
 
               <ImageView
                 android:layout_width="wrap_content"
@@ -105,7 +115,8 @@
             <LinearLayout
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_gravity="end">
+              android:layout_gravity="end"
+              android:onClick="@{() -> presenter.navigateToWebsite(context.getString(viewModel.websiteLink))}">
 
               <ImageView
                 android:layout_width="wrap_content"

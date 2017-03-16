@@ -24,10 +24,12 @@
   <string name="share_dialog_message">Share gem using</string>
   <string name="copied_gem_details_msg">Copied gem details to clipboard!</string>
   <string name="help_and_feedback">Help &amp; Feedback</string>
-  <string name="help_and_feedback_text">Hello Rubiest,\n\nI hope you are liking the RubyGems app.\n\nPlease help us spread the word so that ruby community can benefit from the app. Also please provide your valuable feedback on the website and play store to make this app better.\n\nIf you are a Android developer, you can also contribute to this app on Github
+  <string name="help_and_feedback_text">Hello Rubyist,\n\nI hope you are liking the RubyGems app.\n\nPlease help us spread the word so that ruby community can benefit from the app. Also please provide your valuable feedback on the website and play store to make this app better.\n\nIf you are a Android developer, you can also contribute to this app on Github
     \n\nFor feedback and more details about the app, kindly visit our website.
   </string>
   <string name="github">Github</string>
   <string name="my_website">Website</string>
   <string name="a_note_from_developer">A note from developer</string>
+  <string name="website_url">http://www.singhajit.com</string>
+  <string name="github_url">https://github.com/ajitsing/RubyGemsAndroidApp</string>
 </resources>
