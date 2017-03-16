@@ -9,6 +9,7 @@ import com.singhajit.rubygems.core.ViewVisibility;
 public class LoginViewModel extends BaseObservable {
   private String username;
   private String password;
+  private String name;
   private ViewVisibility loginFormVisibility = new ViewVisibility(true);
   private ViewVisibility loaderVisibility = new ViewVisibility(false);
   private ViewVisibility profileCardVisibility = new ViewVisibility(false);
@@ -57,5 +58,13 @@ public class LoginViewModel extends BaseObservable {
   public void setLoaderVisibility(boolean isVisible) {
     this.loaderVisibility = new ViewVisibility(isVisible);
     notifyPropertyChanged(BR.loaderVisibility);
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 }

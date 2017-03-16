@@ -14,6 +14,7 @@ import com.singhajit.rubygems.profile.model.RubyGemsAPIKey;
 import com.singhajit.rubygems.profile.request.CachedUserGemsRequest;
 import com.singhajit.rubygems.profile.request.LoginRequest;
 import com.singhajit.rubygems.profile.request.UserGemsRequest;
+import com.singhajit.rubygems.profile.respository.LoginRepository;
 import com.singhajit.rubygems.profile.viewmodel.LoginViewModel;
 import com.singhajit.rubygems.recent.model.Gem;
 
@@ -27,12 +28,13 @@ public class LoginPresenter {
   private final APIClient apiClient;
   private final SharedPrefRepo sharedPrefRepo;
   private final ProfileView view;
-  public static final String USERNAME = "USERNAME";
+  private final LoginRepository loginRespository;
 
   public LoginPresenter(APIClient apiClient, SharedPrefRepo sharedPrefRepo, ProfileView view) {
     this.apiClient = apiClient;
     this.sharedPrefRepo = sharedPrefRepo;
     this.view = view;
+    this.loginRespository = new LoginRepository(sharedPrefRepo);
   }
 
   public void login(final LoginViewModel viewModel) {
@@ -52,7 +54,7 @@ public class LoginPresenter {
   }
 
   public void logout(LoginViewModel viewModel) {
-    sharedPrefRepo.remove(API_KEY);
+    loginRespository.logout();
     viewModel.setProfileCardVisibility(false);
     viewModel.setLoginFormVisibility(true);
   }
@@ -122,8 +124,7 @@ public class LoginPresenter {
       @Override
       public void onResponse(String response) {
         RubyGemsAPIKey rubyGemsAPIKey = new Gson().fromJson(response, RubyGemsAPIKey.class);
-        sharedPrefRepo.put(API_KEY, rubyGemsAPIKey.getKey());
-        sharedPrefRepo.put(USERNAME, viewModel.getUsername());
+        loginRespository.login(rubyGemsAPIKey.getKey(), viewModel);
         getUserGems(viewModel, true);
       }
     };

@@ -24,6 +24,25 @@
 
     <android.support.design.widget.TextInputLayout
       android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="20dp">
+
+      <EditText
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/name_optional"
+        android:imeActionId="@+id/login"
+        android:imeOptions="actionUnspecified"
+        android:inputType="textPersonName"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:text="@={loginViewModel.name}"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+      android:layout_width="match_parent"
       android:layout_height="wrap_content">
 
       <AutoCompleteTextView

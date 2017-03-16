@@ -13,10 +13,12 @@ import java.util.regex.Pattern;
 public class ProfileViewModel {
   private final String username;
   private List<Gem> gems = new ArrayList<>();
+  private final String name;
 
-  public ProfileViewModel(List<Gem> gems, String username) {
+  public ProfileViewModel(List<Gem> gems, String username, String name) {
     this.username = username;
     this.gems = gems;
+    this.name = name;
   }
 
   public String getProfileImageUrl() {
@@ -42,7 +44,9 @@ public class ProfileViewModel {
   }
 
   public String getUsername() {
-    if (isEmail(username)) {
+    if (name != null && !name.isEmpty()) {
+      return name;
+    } else if (isEmail(username)) {
       String[] split = username.split("@");
       return split[0];
     }

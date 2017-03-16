@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 
 public class SharedPrefRepo {
   public static final String API_KEY = "API_KEY";
+  public static final String USERNAME = "USERNAME";
+  public static final String NAME = "NAME";
   private final String RUBYGEMS_SHARED_PREF = "RubyGemsSharedPref";
   private final SharedPreferences sharedPreferences;
 
