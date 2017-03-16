@@ -14,6 +14,11 @@ public class LoginViewModel extends BaseObservable {
   private ViewVisibility loaderVisibility = new ViewVisibility(false);
   private ViewVisibility profileCardVisibility = new ViewVisibility(false);
 
+  public LoginViewModel(String name, String username) {
+    this.name = name;
+    this.username = username;
+  }
+
   public String getUsername() {
     return username;
   }

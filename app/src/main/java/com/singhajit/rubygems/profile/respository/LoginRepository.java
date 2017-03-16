@@ -22,7 +22,5 @@ public class LoginRepository {
 
   public void logout() {
     sharedPrefRepo.remove(API_KEY);
-    sharedPrefRepo.remove(USERNAME);
-    sharedPrefRepo.remove(NAME);
   }
 }

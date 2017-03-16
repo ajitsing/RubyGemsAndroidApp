@@ -37,9 +37,9 @@ public class UserProfileFragment extends Fragment implements ProfileView {
   @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     binding = DataBindingUtil.inflate(inflater, R.layout.profile_fragment, container, false);
-    loginViewModel = new LoginViewModel();
-    binding.setLoginViewModel(loginViewModel);
     sharedPrefRepo = new SharedPrefRepo(getActivity());
+    loginViewModel = new LoginViewModel(sharedPrefRepo.get(NAME), sharedPrefRepo.get(USERNAME));
+    binding.setLoginViewModel(loginViewModel);
     presenter = new LoginPresenter((APIClient) getActivity(), sharedPrefRepo, this);
     binding.setPresenter(presenter);
 
