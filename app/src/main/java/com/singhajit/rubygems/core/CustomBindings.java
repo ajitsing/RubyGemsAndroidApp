@@ -18,7 +18,6 @@ public class CustomBindings {
 
   @BindingAdapter({"imageUrl"})
   public static void setImageUrl(NetworkImageView view, String url) {
-    view.setDrawingCacheEnabled(true);
     view.setImageUrl(url, RubyGemsVolley.getInstance(view.getContext()).getImageLoader());
   }
 
