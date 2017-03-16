@@ -4,4 +4,6 @@ import com.singhajit.rubygems.network.BaseRequest;
 
 public interface APIClient {
   void makeRequest(BaseRequest request);
+
+  void haltRequest(String url);
 }

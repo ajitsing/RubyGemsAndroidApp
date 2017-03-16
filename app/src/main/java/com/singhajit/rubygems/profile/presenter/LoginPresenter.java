@@ -54,6 +54,8 @@ public class LoginPresenter {
   }
 
   public void logout(LoginViewModel viewModel) {
+    apiClient.haltRequest(new UserGemsRequest(null, null, null).getUrl());
+    view.hidePullToRefreshLoader();
     loginRespository.logout();
     viewModel.setProfileCardVisibility(false);
     viewModel.setLoginFormVisibility(true);

@@ -10,4 +10,6 @@ public interface ProfileView {
   void render(ArrayList<Gem> gems);
 
   void showPullToRefreshLoader();
+
+  void hidePullToRefreshLoader();
 }

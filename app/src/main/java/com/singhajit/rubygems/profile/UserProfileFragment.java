@@ -59,7 +59,7 @@ public class UserProfileFragment extends Fragment implements ProfileView {
 
   @Override
   public void showError(String message) {
-    binding.refreshLayout.setRefreshing(false);
+    hidePullToRefreshLoader();
     ErrorHandler.showSnackBar(binding.getRoot(), message, new View.OnClickListener() {
       @Override
       public void onClick(View view) {
@@ -75,11 +75,16 @@ public class UserProfileFragment extends Fragment implements ProfileView {
     binding.setProfileViewModel(new ProfileViewModel(gems, sharedPrefRepo.get(USERNAME), sharedPrefRepo.get(NAME)));
     GemListRenderer gemListRenderer = new GemListRenderer(gems, binding.userGemsList);
     gemListRenderer.render(isRefresh);
-    binding.refreshLayout.setRefreshing(false);
+    hidePullToRefreshLoader();
   }
 
   @Override
   public void showPullToRefreshLoader() {
     binding.refreshLayout.setRefreshing(true);
+  }
+
+  @Override
+  public void hidePullToRefreshLoader() {
+    binding.refreshLayout.setRefreshing(false);
   }
 }
