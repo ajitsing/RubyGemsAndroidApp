@@ -38,6 +38,10 @@ public class LoginPresenter {
   }
 
   public void login(final LoginViewModel viewModel) {
+    if (!viewModel.isAllRequiredFieldsEntered()) {
+      viewModel.setRequiredFieldsWarningVisibility(true);
+      return;
+    }
     viewModel.setLoaderVisibility(true);
     LoginRequest request = new LoginRequest(viewModel.getUsername(), viewModel.getPassword(), onSuccessFullLogin(viewModel), onLoginError(viewModel));
     viewModel.setLoginFormVisibility(false);

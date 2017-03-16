@@ -33,4 +33,5 @@
   <string name="a_note_from_developer">A note from developer</string>
   <string name="website_url">http://www.singhajit.com</string>
   <string name="github_url">https://github.com/ajitsing/RubyGemsAndroidApp</string>
+  <string name="email_and_password_is_required">* Email and Password is required</string>
 </resources>
