@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout
+  xmlns:android="http://schemas.android.com/apk/res/android">
 
   <data class="GemSearchBinding">
 
@@ -9,7 +10,6 @@
   </data>
 
   <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/gem_list_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
