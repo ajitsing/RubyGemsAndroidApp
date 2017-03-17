@@ -12,4 +12,10 @@ public class EmbeddedWebViewModelTest {
     EmbeddedWebViewModel viewModel = new EmbeddedWebViewModel("https://www.singhajit.com/android-articles/rubygemsandroidapp");
     assertThat(viewModel.getDomainName(), is("https://www.singhajit.com"));
   }
+
+  @Test
+  public void shouldReturnOriginalUrlWhenUrlIsNotParsable() throws Exception {
+    EmbeddedWebViewModel viewModel = new EmbeddedWebViewModel("httpfjskl://abc.somthing");
+    assertThat(viewModel.getDomainName(), is("httpfjskl://abc.somthing"));
+  }
 }

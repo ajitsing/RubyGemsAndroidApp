@@ -11,10 +11,6 @@ public class ExternalLinksViewModel {
     this.gem = gem;
   }
 
-  public String getProjectURI() {
-    return gem.getProjectURI();
-  }
-
   public String getHomepageURI() {
     return gem.getHomepageURI();
   }
