@@ -17,22 +17,7 @@ public class RubyGemsVolley {
   private RubyGemsVolley(Context context) {
     RubyGemsVolley.context = context;
     requestQueue = getRequestQueue();
-
-    imageLoader = new ImageLoader(requestQueue,
-        new ImageLoader.ImageCache() {
-          private final LruCache<String, Bitmap>
-              cache = new LruCache<>(20);
-
-          @Override
-          public Bitmap getBitmap(String url) {
-            return cache.get(url);
-          }
-
-          @Override
-          public void putBitmap(String url, Bitmap bitmap) {
-            cache.put(url, bitmap);
-          }
-        });
+    imageLoader = new RubyGemsImageLoader();
   }
 
   public static synchronized RubyGemsVolley getInstance(Context context) {
@@ -57,5 +42,24 @@ public class RubyGemsVolley {
 
   public ImageLoader getImageLoader() {
     return imageLoader;
+  }
+
+  private class RubyGemsImageLoader extends ImageLoader {
+    RubyGemsImageLoader() {
+      super(requestQueue, new ImageLoader.ImageCache() {
+        private final LruCache<String, Bitmap>
+            cache = new LruCache<>(20);
+
+        @Override
+        public Bitmap getBitmap(String url) {
+          return cache.get(url);
+        }
+
+        @Override
+        public void putBitmap(String url, Bitmap bitmap) {
+          cache.put(url, bitmap);
+        }
+      });
+    }
   }
 }
