@@ -1,6 +1,30 @@
 # RubyGemsAndroidApp
 RubyGemsAndroidApp
 
+One app to explore them all!
+
+#### Features
+
+1. Newly added gems: It feels like you are on your facebook wall and able to see all new posts
+2. Recently updated gems: This feature gives you information about recently updated ruby gems.
+3. Search gems
+4. View your profile and your gems
+5. See gem details
+6. View various gem related websites e.g github, gem website, mailing list, bug tracker etc. inside the app itself.
+7. Share any gem on social media from the gem details page.
+
+#### Look & Feel
+
+![Alt text](https://github.com/ajitsing/ScreenShots/blob/master/rubygems/rubygems_profile.png)
+
+![Alt text](https://github.com/ajitsing/ScreenShots/blob/master/rubygems/rubygems_new.png)
+
+![Alt text](https://github.com/ajitsing/ScreenShots/blob/master/rubygems/rubygems_search.png)
+
+![Alt text](https://github.com/ajitsing/ScreenShots/blob/master/rubygems/rubygems_gem_details.png)
+
+![Alt text](https://github.com/ajitsing/ScreenShots/blob/master/rubygems/rubygems_github.png)
+
 #### License
 ```License
 MIT License
