@@ -3,6 +3,8 @@ RubyGemsAndroidApp
 
 One app to explore them all!
 
+[![Twitter Follow](https://img.shields.io/twitter/follow/Ajit5ingh.svg?style=social)](https://twitter.com/Ajit5ingh)
+
 ## Features
 
 1. See all newly added gems
